@@ -63,21 +63,10 @@ import pygame
 pygame.mixer.init()
 
 def introduction():
-    name = simpledialog.askstring("Player Name", "Please enter your name:")
-    messagebox.showinfo("Welcome", f"Welcome to the Haunted Mansion, {name}!\nYou are a distant family member of the Van der Meer family, who built Ravenwood Manor.\nGenerations of Van der Meers resided within its walls, their opulent lifestyle overshadowed by rumors of "
-          "corruption and scandal.\nAre you prepared to uncover the dark secrets that lie within Ravenwood Manor?\nAs the newfound owner, you decide to pay a visit to the mansion.\nThe house is dated, creaky, and falling apart. You walk in the front door.")
-
-# The rest of the game functions go here...
-
-# Main game function
-def play_game():
-    root = tk.Tk()
-    root.title("Haunted Mansion")
-
-    introduction()
-    # The rest of the game loop implementation goes here...
-
-    root.mainloop()
-
-if __name__ == "__main__":
-    play_game()
+    messagebox.showinfo("Welcome", f"Welcome to the Haunted Mansion, {name}!\n"
+                                   f"You are a distant family member of the Van der Meer family, who built Ravenwood Manor.\n"
+                                   f"Generations of Van der Meers resided within its walls, their opulent lifestyle overshadowed by rumors of corruption and scandal.\n"
+                                   "Are you prepared to uncover the dark secrets that lie within Ravenwood Manor?\n"
+                                   "As the newfound owner, you decide to pay a visit to the mansion.\n"
+                                   "The house is dated, creaky, and falling apart. You walk in the front door.\n"
+                                   "Do you want to enter the living room, kitchen room, explore the basement, attic, or explore the garden?")
