@@ -304,12 +304,12 @@ def broken_door():
                                        " a really ancient old lady rocking on her chair (she seems to be hundreds of years old), staring at the wall"
                                        " and a small table with a severed horse head")
         choice = custom_choice_basement_dialog(root)
-    if choice == 'boxes':
-        handle_boxes()
-    elif choice == 'old':
-        handle_creepyGrandma()
-    elif choice == 'head':
-        handle_head()
+        if choice == 'boxes':
+            handle_boxes()
+        elif choice == 'old':
+            handle_creepyGrandma()
+        elif choice == 'head':
+            handle_head()
 
     elif choice == "no":
         messagebox.showinfo("Outcome", "You return to the main hall")
@@ -389,6 +389,44 @@ def handle_creepyGrandma():
     messagebox.showinfo("Outcome", "You back away from the creepy grandma, filled with fear and extreme unease as she keeps scanning your every movement")
     messagebox.showinfo("Outcome", "You try exploring other parts of the basement, not wanting to interact with the creepy grandma ever again.")
     explore_basement()
+
+def handle_head():
+    messagebox.showinfo("Outcome", "You approach the severed horse head.\n"
+                                   "Blood still drips from where the head was presumably attached to its body")
+    messagebox.showinfo("Outcome", "Suddenly, the horse head stares you right in the eyes and says, with a deep demonic voice, in an ominous tone:\n"
+                                   "In the shadows, I wait,\n"
+                                   "Questions whispered in the dark,\n"
+                                   "Ask, and I shall answer.")
+
+    choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
+    choice = custom_choice_basement_dialog(root)
+    if choice == 'boxes':
+        handle_boxes()
+    elif choice == 'old':
+        handle_creepyGrandma()
+    elif choice == 'head':
+        handle_head()
+
+def custom_choice_horseHead_dialog(parent):
+    dialog = tk.Toplevel(parent)
+    dialog.title("Decision")
+
+    tk.Label(dialog, text="What do ask the Head?").pack(padx=20, pady=10)
+
+    button_frame = tk.Frame(dialog)
+    button_frame.pack(pady=10)
+
+    choice = tk.StringVar()
+    choice.set(None)
+
+    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+
+    dialog.wait_window(dialog)
+    return choice.get()
 
 def secret_passage():
     messagebox.showinfo("Secret Passage", """
