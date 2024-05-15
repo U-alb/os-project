@@ -32,7 +32,7 @@ Haunted Mansion is an interactive text-based adventure game that uses a GUI inte
 
 1. Run the game:
     ```sh
-    python main.py
+    python story.py
     ```
 
 2. A window will appear prompting you to enter your name.
@@ -45,7 +45,7 @@ Haunted Mansion is an interactive text-based adventure game that uses a GUI inte
 
 ## Code Structure
 
-- `main.py`: Main game logic and GUI implementation.
+- `story.py`: Main game logic and GUI implementation.
 - `assets/`: Directory containing sound files used in the game.
 
 ## Example Code
