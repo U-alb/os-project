@@ -183,10 +183,8 @@ def custom_choice_dialog(parent):
     choice.set(None)
 
     tk.Button(button_frame, text="Oven", command=lambda: set_choice(dialog, choice, "Oven")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left",
-                                                                                                          padx=5)
-    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left",
-                                                                                                      padx=5)
+    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -327,12 +325,9 @@ def custom_choice_basement_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Look inside the cardboard boxes",
-              command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Try to see if the old lady is still alive",
-              command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(
-        side="left", padx=5)
+    tk.Button(button_frame, text="Look inside the cardboard boxes", command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Try to see if the old lady is still alive", command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -380,15 +375,15 @@ def handle_boxes():
                 messagebox.showinfo("Outcome", "You give up, knowing that you will never wield the power of N's laser")
         elif choice == "no":
             messagebox.showinfo("Outcome", "You give up without even attempting to assemble the device, knowing that you will never wield the power of N's laser")
-    explore_basement()
+    broken_door()
 
 def handle_creepyGrandma():
     messagebox.showinfo("Outcome", "You go near the almost fossilised old grandma")
     messagebox.showinfo("Outcome", "The old creepy grandma follows your movements with her sight and nothing more,\n"
-                                   "giving you the impression that inside the old shriveled and calcified carcass, the mind is still very very VERY functional")
+                                   "giving you the impression that inside that old shriveled and calcified carcass, the mind is still very very VERY functional")
     messagebox.showinfo("Outcome", "You back away from the creepy grandma, filled with fear and extreme unease as she keeps scanning your every movement")
     messagebox.showinfo("Outcome", "You try exploring other parts of the basement, not wanting to interact with the creepy grandma ever again.")
-    explore_basement()
+    broken_door()
 
 def handle_head():
     messagebox.showinfo("Outcome", "You approach the severed horse head.\n"
@@ -399,13 +394,17 @@ def handle_head():
                                    "Ask, and I shall answer.")
 
     choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
-    choice = custom_choice_basement_dialog(root)
-    if choice == 'boxes':
-        handle_boxes()
-    elif choice == 'old':
-        handle_creepyGrandma()
-    elif choice == 'head':
-        handle_head()
+    choice = custom_choice_horseHead_dialog(root)
+    if choice == 'Who':
+        handle_who()
+    elif choice == 'What':
+        handle_what()
+    elif choice == 'Why':
+        handle_why()
+    elif choice == 'Help':
+        handle_help()
+    elif choice == 'Want':
+        handle_want()
 
 def custom_choice_horseHead_dialog(parent):
     dialog = tk.Toplevel(parent)
@@ -419,14 +418,201 @@ def custom_choice_horseHead_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "Who")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "What")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "Why")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "Help")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "Want")).pack(side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
+
+def handle_who():
+    messagebox.showinfo("Outcome", "You ask the head 'who' it is, and it responds...")
+    rand = random.randint(0, 3)
+    if rand == 0:
+        messagebox.showinfo("Horse head response", "Whispers in shadows,\n"
+                                                                 "Echoes of forgotten pasts,\n"
+                                                                 "I am the unknown")
+    elif rand == 1:
+        messagebox.showinfo("Horse head response", "Shadow of despair,\n"
+                                                                 "Remnant of forgotten fear,\n"
+                                                                 "I am the abyss.")
+    elif rand == 2:
+        messagebox.showinfo("Horse head response", "Echoes of anguish,\n"
+                                                                 "Twilight's silent sentinel,\n"
+                                                                 "I am eternal.")
+    elif rand == 3:
+        messagebox.showinfo("Horse head response", "Whisperer of dreams,\n"
+                                                                 "Warden of the cursed domain,\n"
+                                                                 "I am the forgotten.")
+    choice = messagebox.askquestion("Choice", "What do you want to ask the head some more questions?\n"
+                                              "Maybe it'll say something else this time ¯\_(ツ)_/¯")
+    if choice == "yes":
+        choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
+        choice = custom_choice_horseHead_dialog(root)
+        if choice == 'Who':
+            handle_who()
+        elif choice == 'What':
+            handle_what()
+        elif choice == 'Why':
+            handle_why()
+        elif choice == 'Help':
+            handle_help()
+        elif choice == 'Want':
+            handle_want()
+    elif choice == "no":
+        broken_door()
+
+def handle_what():
+    messagebox.showinfo("Outcome", "You ask the horse head what happened here. It responds...")
+    rand = random.randint(0, 3)
+    if rand == 0:
+        messagebox.showinfo("Horse head response", "Silent screams echo,\n"
+                                                                 "Dark secrets beneath floorboards,\n"
+                                                                 "Mansion's tale untold.")
+    elif rand == 1:
+        messagebox.showinfo("Horse head response", "Screams in the night air,\n"
+                                                                 "Shadows dance with ghostly wails,\n"
+                                                                 "Tragedy unfolds.")
+    elif rand == 2:
+        messagebox.showinfo("Horse head response", "Blood stains on these walls,\n"
+                                                                 "Echoes of a grim demise,\n"
+                                                                 "Secrets buried deep.")
+    elif rand == 3:
+        messagebox.showinfo("Horse head response", "Whispers of the past,\n"
+                                                                 "A tale of sorrow and woe,\n"
+                                                                 "Darkness claims its prize.")
+    choice = messagebox.askquestion("Choice", "What do you want to ask the head some more questions?\n"
+                                              "Maybe it'll say something else this time ¯\_(ツ)_/¯")
+    if choice == "yes":
+        choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
+        choice = custom_choice_horseHead_dialog(root)
+        if choice == 'Who':
+            handle_who()
+        elif choice == 'What':
+            handle_what()
+        elif choice == 'Why':
+            handle_why()
+        elif choice == 'Help':
+            handle_help()
+        elif choice == 'Want':
+            handle_want()
+    elif choice == "no":
+        broken_door()
+
+def handle_why():
+    messagebox.showinfo("Outcome", "You ask the horse head why is it here. It responds...")
+    rand = random.randint(0, 3)
+    if rand == 0:
+        messagebox.showinfo("Horse head response", "Trapped in time's cruel grip,\n"
+                                                                 "Eternal vigil I keep,\n"
+                                                                 "Awaiting my fate.")
+    elif rand == 1:
+        messagebox.showinfo("Horse head response", "Bound by ancient chains,\n"
+                                                                 "Guardian of the cursed realm,\n"
+                                                                 "Fate's cruel decree.")
+    elif rand == 2:
+        messagebox.showinfo("Horse head response", "Echoes of despair,\n"
+                                                                 "Lingering in this abyss,\n"
+                                                                 "Forsaken and lost.")
+    elif rand == 3:
+        messagebox.showinfo("Horse head response", "Bearer of secrets,\n"
+                                                                 "Haunting the halls of the damned,\n"
+                                                                 "I am the darkness.")
+    choice = messagebox.askquestion("Choice", "What do you want to ask the head some more questions?\n"
+                                              "Maybe it'll say something else this time ¯\_(ツ)_/¯")
+    if choice == "yes":
+        choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
+        choice = custom_choice_horseHead_dialog(root)
+        if choice == 'Who':
+            handle_who()
+        elif choice == 'What':
+            handle_what()
+        elif choice == 'Why':
+            handle_why()
+        elif choice == 'Help':
+            handle_help()
+        elif choice == 'Want':
+            handle_want()
+    elif choice == "no":
+        broken_door()
+
+def handle_help():
+    messagebox.showinfo("Outcome", "You ask the horse head if it can help you. It responds...")
+    rand = random.randint(0, 3)
+    if rand == 0:
+        messagebox.showinfo("Horse head response", "Threads of fate entwine,\n"
+                                                                 "Veiled passage to the unknown,\n"
+                                                                 "Seek where shadows dwell.")
+    elif rand == 1:
+        messagebox.showinfo("Horse head response", "Keys to realms unseen,\n"
+                                                                 "Unravel the twisted path,\n"
+                                                                 "Beyond lies salvation.")
+    elif rand == 2:
+        messagebox.showinfo("Horse head response", "Whispers of guidance,\n"
+                                                                 "Follow the echoes of dread,\n"
+                                                                 "The threshold awaits.")
+    elif rand == 3:
+        messagebox.showinfo("Horse head response", "In shadows it hides,\n"
+                                                                 "Gateway to oblivion,\n"
+                                                                 "Dare you turn the key?")
+    choice = messagebox.askquestion("Choice", "What do you want to ask the head some more questions?\n"
+                                              "Maybe it'll say something else this time ¯\_(ツ)_/¯")
+    if choice == "yes":
+        choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
+        choice = custom_choice_horseHead_dialog(root)
+        if choice == 'Who':
+            handle_who()
+        elif choice == 'What':
+            handle_what()
+        elif choice == 'Why':
+            handle_why()
+        elif choice == 'Help':
+            handle_help()
+        elif choice == 'Want':
+            handle_want()
+    elif choice == "no":
+        broken_door()
+
+def handle_want():
+    messagebox.showinfo("Outcome", "You ask the horse head what it wants from you. It responds...")
+    rand = random.randint(0, 3)
+    if rand == 0:
+        messagebox.showinfo("Horse head response", "Lost souls to guide home,\n"
+                                                                 "Whispered secrets to divulge,\n"
+                                                                 "Eternal slumber.")
+    elif rand == 1:
+        messagebox.showinfo("Horse head response", "Bearer of secrets,\n"
+                                                                 "Unravel the web of fate,\n"
+                                                                 "Embrace the darkness.")
+    elif rand == 2:
+        messagebox.showinfo("Horse head response", "Vessel for my truth,\n"
+                                                                 "Carry whispers of the dead,\n"
+                                                                 "Illuminate lies.")
+    elif rand == 3:
+        messagebox.showinfo("Horse head response", "Bearer of my curse,\n"
+                                                                 "Carry my burden of woe,\n"
+                                                                 "Surrender to fate.")
+    choice = messagebox.askquestion("Choice", "What do you want to ask the head some more questions?\n"
+                                              "Maybe it'll say something else this time ¯\_(ツ)_/¯")
+    if choice == "yes":
+        choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
+        choice = custom_choice_horseHead_dialog(root)
+        if choice == 'Who':
+            handle_who()
+        elif choice == 'What':
+            handle_what()
+        elif choice == 'Why':
+            handle_why()
+        elif choice == 'Help':
+            handle_help()
+        elif choice == 'Want':
+            handle_want()
+    elif choice == "no":
+        broken_door()
+
+
 
 def secret_passage():
     messagebox.showinfo("Secret Passage", """
