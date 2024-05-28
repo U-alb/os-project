@@ -23,6 +23,9 @@ class Player:
         messagebox.showinfo("Outcome",
                             "\n" + "-" * 20 + "\n" + f"{self.name}: Health = {self.health}, Attacking = {self.attack}, Defense = {self.defense}")
 
+    def modify_attack(self, value):
+        self.attack = value
+
 
 class Enemy:
     def __init__(self, name, health, attack, defense):
@@ -43,38 +46,26 @@ class Enemy:
 
 
 def battle(player, enemy):
-    def run_battle():
-        try:
-            root.after(0, lambda: messagebox.showinfo("Outcome", "A fierce " + enemy.name + " attacks!"))
-            while player.is_alive() and enemy.is_alive():
-                root.after(0, player.print_status)
-                root.after(0, enemy.print_status)
+    messagebox.showinfo("Outcome", "A fierce " + enemy.name + " attacks!")
+    while player.is_alive() and enemy.is_alive():
+        player.print_status()
+        enemy.print_status()
 
-                player_damage = max(0, player.attack - enemy.defense)
-                enemy.take_damage(player_damage)
-                root.after(0, lambda: messagebox.showinfo("Outcome",
-                                                          f"You hit the {enemy.name} for {player_damage} damage."))
+        player_damage = max(0, player.attack - enemy.defense)
+        enemy.take_damage(player_damage)
+        messagebox.showinfo("Outcome", f"You hit the {enemy.name} for {player_damage} damage.")
 
-                if enemy.is_alive():
-                    enemy_damage = max(0, enemy.attacking - player.defense)
-                    player.health -= enemy_damage
-                    root.after(0, lambda: messagebox.showinfo("Outcome",
-                                                              f"The {enemy.name} strikes you for {enemy_damage} damage."))
-                time.sleep(1)  # Simulate time delay between turns
+        if enemy.is_alive():
+            enemy_damage = max(0, enemy.attacking - player.defense)
+            player.health -= enemy_damage
+            messagebox.showinfo("Outcome", f"The {enemy.name} strikes you for {enemy_damage} damage.")
+        time.sleep(1)  # Add a small delay for combat actions
 
-            if player.is_alive():
-                root.after(0,
-                           lambda: messagebox.showinfo("Outcome", "Victory! You have defeated the " + enemy.name + "!"))
-            else:
-                root.after(0, lambda: messagebox.showinfo("Outcome",
-                                                          "You have been slain by the " + enemy.name + "! YOU DIED"))
+    if player.is_alive():
+        messagebox.showinfo("Outcome", "\nVictory! You have defeated the " + enemy.name + "!")
 
-        except Exception as e:
-            print(f"Error in battle thread: {str(e)}")
-            root.after(0, lambda: messagebox.showerror("Error", "An error occurred during battle."))
-
-    battle_thread = Thread(target=run_battle)
-    battle_thread.start()
+    else:
+        messagebox.showinfo("Outcome", "\nYou have been slain by the " + enemy.name + "!" + "YOU DIED")
 
 
 def nickname():
@@ -125,12 +116,10 @@ def living_room():
                                 "Each delicate maneuver is executed with precision, your heart pounding with every "
                                 "breath, relieved yet wary of the potential consequences lurking in the shadows.")
         else:
-            messagebox.showinfo("Outcome", "Bulbuc bites your crotch.")
             pygame.mixer.Sound("assets/sounds/dog.mp3").play()
+            messagebox.showinfo("Outcome", "Bulbuc bites your crotch.")
             Bulbuc = Enemy("Bulbuc", 15, 8, 2)
-            battle_thread = Thread(target=battle, args=(player, Bulbuc))
-            battle_thread.start()
-            battle_thread.join()
+            battle(player, Bulbuc)
     else:
         rand = random.randint(0, 2)
         if rand == 0:
@@ -247,35 +236,45 @@ def handle_oven():
 
 
 def handle_cupboard():
+    pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
     messagebox.showinfo("Outcome",
                         "The second you open the cupboard a loot midget jumps out of it and yells")
     rand = random.randint(0, 4)
     if rand == 0:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "Mine, mine, mine, mine, mine, mine, mine, mine, mine!!!!!!!!")
     elif rand == 1:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "MY PRECIOUSSSSSSSSS............")
     elif rand == 2:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "Punch me in the face!!!")
     elif rand == 3:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "So what if I'm a short king?")
     elif rand == 4:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "Delight your eyes with the sight of a true ⚡ code wizard ⚡ ")
 
     messagebox.showinfo("Outcome", "Then, the midget starts...")
     rand = random.randint(0, 3)
     if rand == 0:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "...delivering blows with the strength of a kitten's whimper.")
         Midget = Enemy("Loot Midget", 1, 8, 2)
         battle_thread = Thread(target=battle, args=(player, Midget))
         battle_thread.start()
         battle_thread.join()
     elif rand == 1:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome",
                             "...darting around the room in a crazed frenzy, his high-pitched screams echoing off the "
                             "walls like the wails of a deranged soul.")
     elif rand == 2:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome", "...jumping in place like a crazy rabbit")
     elif rand == 3:
+        pygame.mixer.Sound("assets/sounds/the-bane-gun.mp3").play()
         messagebox.showinfo("Outcome",
                             "...throwing a hissy fit, hurling objects around the room with reckless abandon.")
         Midget = Enemy("Loot Midget", 1, 8, 2)
@@ -379,6 +378,7 @@ def custom_choice_basement_dialog(parent):
 
 
 def handle_boxes():
+    pygame.mixer.Sound("assets/sounds/cardboard-box-open-close.mp3").play()
     messagebox.showinfo("Outcome", "You start searching inside the cardboard boxes, and... ")
     rand = random.randint(0, 2)
     if rand == 0:
@@ -684,7 +684,7 @@ def handle_want():
 
 def secret_passage():
     messagebox.showinfo("Secret Passage", """
-                ________________
+              ________________
                /                \ 
               /   Secret       /
               \  Passage      /
@@ -772,49 +772,54 @@ def attic():
 
 # Define the explore garden function
 def explore_garden():
+    garden_sound = pygame.mixer.Sound("assets/sounds/garden-howling-wind.mp3");
+    garden_sound.play()
     messagebox.showinfo("Garden", """
                 ___________
                /           \ 
               /   Garden    /
               \____________/ 
     """
-                                  "As you step into the overgrown garden of the old estate, the air thickens with the scent of decay.\n"
+                                  "As you step into the overgrown garden of the old estate, the air thickens with the "
+                                  "scent of decay.\n"
                                   "Vines twist like sinew across the path, grasping for something to hold.\n"
                                   "The ground, sponge-like and moist, seems to pulse underfoot.\n"
                                   "Trees with limbs twisted into grotesque forms watch over a ghastly scene:\n"
-                                  "humanoid figures, once guests, now entwined and calcified by relentless ivy, their faces frozen in silent screams.\n"
-                                  "At the heart of the garden, a murky pond reveals faces submerged beneath algae, water lilies rooting through their eye sockets in a horrifying embrace of flesh and flora."
+                                  "humanoid figures, once guests, now entwined and calcified by relentless ivy, "
+                                  "their faces frozen in silent screams.\n"
+                                  "At the heart of the garden, a murky pond reveals faces submerged beneath algae, "
+                                  "water lilies rooting through their eye sockets in a horrifying embrace of flesh "
+                                  "and flora."
                                   "")
+    garden_sound.stop()
     choice = messagebox.askquestion("Decision", "Do you want to explore the garden?")
 
     if choice == "yes":
-        messagebox.showinfo("Outcome", "As you explore the garder, the gastly trees start moving around, voicelss and only"
-                                       "displaying the sheer terror of the people which were transformed into them.")
+        messagebox.showinfo("Outcome", "As you explore the guarder, the ghastly trees start moving around, voiceless "
+                                       "and only displaying the sheer terror of the people which were transformed "
+                                       "into them.")
         Living_tree = Enemy("Living Tree", 25, 10, 9)
-        battle_thread = Thread(target=battle, args=(player, Living_tree))
-        battle_thread.start()
-        battle_thread.join()
+        Player.modify_attack(player, player.attack + 20)
+        battle(player, Living_tree)
 
         choice = messagebox.askquestion("Decision", "Do you want to further explore the garden")
 
         if choice == "yes":
-            messagebox.showinfo("Oucome", "You get attacked by more living trees!")
+            messagebox.showinfo("Outcome", "You get attacked by more living trees!")
 
-            battle_thread = Thread(target=battle, args=(player, Living_tree))
-            battle_thread.start()
-            battle_thread.join()
-
-            battle_thread = Thread(target=battle, args=(player, Living_tree))
-            battle_thread.start()
-            battle_thread.join()
-
-            messagebox.showinfo("Outcome", "Insie the bark of onw of the living trees you discover a note, the writing on it ssays:\n"
-                                           "I found it! I found the password!!!!")
+            messagebox.showinfo("Outcome", "Inside the bark of one of the living trees you discover a note, "
+                                           "the writing on it says:\n"
+                                           "I found it! I found the password!!!! It's 'I see...'\n"
+                                           "The writing after 'see' isn't readable. ")
+            messagebox.showinfo("Outcome", "You are intrigued by what you found. You should remember the writing on "
+                                           "the ")
 
     elif choice == "no":
         messagebox.showinfo("Outcome", "You decide to avoid the mausoleum and explore the garden further."
-                                       "Amidst the foliage, you find a forgotten fountain with coins scattered at the bottom."
-                                       "You collect the coins and return to the mansion, feeling a strange sense of unease.")
+                                       "Amidst the foliage, you find a forgotten fountain with coins scattered at the "
+                                       "bottom."
+                                       "You collect the coins and return to the mansion, feeling a strange sense of "
+                                       "unease.")
 
 
 # Define process_input function
