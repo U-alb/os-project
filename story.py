@@ -10,6 +10,16 @@ import pygame
 pygame.init()
 
 
+def play_game():
+    # Create the main GUI window
+    global root
+    root = Tk()
+    root.title("Haunted Mansion")
+    # Display the main menu
+    show_main_menu()
+    root.mainloop()
+
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -74,12 +84,15 @@ def nickname():
 
 def introduction():
     messagebox.showinfo("Welcome", f"Welcome to the Haunted Mansion, {name}!\n"
-                                   f"You are a distant family member of the Van der Meer family, who built Ravenwood Manor.\n"
-                                   f"Generations of Van der Meers resided within its walls, their opulent lifestyle overshadowed by rumors of corruption and scandal.\n"
+                                   f"You are a distant family member of the Van der Meer family, who built Ravenwood "
+                                   f"Manor.\n"
+                                   f"Generations of Van der Meers resided within its walls, their opulent lifestyle "
+                                   f"overshadowed by rumors of corruption and scandal.\n"
                                    "Are you prepared to uncover the dark secrets that lie within Ravenwood Manor?\n"
                                    "As the newfound owner, you decide to pay a visit to the mansion.\n"
                                    "The house is dated, creaky, and falling apart. You walk in the front door.\n"
-                                   "Do you want to enter the living room, kitchen room, explore the basement, attic, or explore the garden?")
+                                   "Do you want to enter the living room, kitchen room, explore the basement, attic, "
+                                   "or explore the garden?")
 
 
 def living_room():
@@ -95,7 +108,8 @@ def living_room():
                              |    Pitbull       |
                              |    (sleeping)    |
                              |__________________|
-    """"As you step into the room, your eyes lock onto Bulbuc, the manor's loyal pitbull, guarding a pile of gleaming gold jewelry.")
+    """"As you step into the room, your eyes lock onto Bulbuc, the manor's loyal pitbull, guarding a pile of gleaming "
+                                       "gold jewelry.")
     choice = messagebox.askquestion("Decision", "Do you want to steal the jewelry from the pitbull?")
     if choice == "yes":
         rand = random.randint(0, 2)
@@ -105,8 +119,10 @@ def living_room():
                                 "You are now dead.")
         elif rand == 1:
             messagebox.showinfo("Outcome",
-                                "With careful and silent movements, you manage to acquire the jewelry without disturbing Bulbuc's slumber.\n"
-                                "Each delicate maneuver is executed with precision, your heart pounding with every breath, relieved yet wary of the potential consequences lurking in the shadows.")
+                                "With careful and silent movements, you manage to acquire the jewelry without "
+                                "disturbing Bulbuc's slumber.\n"
+                                "Each delicate maneuver is executed with precision, your heart pounding with every "
+                                "breath, relieved yet wary of the potential consequences lurking in the shadows.")
         else:
             messagebox.showinfo("Outcome", "Bulbuc bites your crotch.")
             Bulbuc = Enemy("Bulbuc", 15, 8, 2)
@@ -117,14 +133,19 @@ def living_room():
         rand = random.randint(0, 2)
         if rand == 0:
             messagebox.showinfo("Outcome",
-                                "Feeling the weight of Bulbuc's presence and the discomfort of the situation, you choose to abandon the idea of stealing the jewelry and quietly exit the living room.\n"
-                                "The relief of escaping unscathed mixes with a lingering sense of unease, reminding you of the dangers that lurk within the manor's walls.")
+                                "Feeling the weight of Bulbuc's presence and the discomfort of the situation, "
+                                "you choose to abandon the idea of stealing the jewelry and quietly exit the living "
+                                "room.\n"
+                                "The relief of escaping unscathed mixes with a lingering sense of unease, reminding "
+                                "you of the dangers that lurk within the manor's walls.")
         elif rand == 1:
             messagebox.showinfo("Outcome", "Bulbuc wakes up and bites you by the bottom")
         else:
             messagebox.showinfo("Outcome",
-                                "Despite the ominous creaking of the floorboards that rouse Bulbuc from his slumber, luck remains on your side as he fails to detect your presence.\n"
-                                "With cautious steps and bated breath, you slip away unnoticed, relieved to have escaped unscathed from the sleeping beast's domain.")
+                                "Despite the ominous creaking of the floorboards that rouse Bulbuc from his slumber, "
+                                "luck remains on your side as he fails to detect your presence.\n"
+                                "With cautious steps and bated breath, you slip away unnoticed, relieved to have "
+                                "escaped unscathed from the sleeping beast's domain.")
 
 
 def kitchen():
@@ -145,11 +166,13 @@ def kitchen():
         elif rand == 1:
             messagebox.showinfo("Outcome", 'A bunch of burning coals instead of the harvested organs')
             messagebox.showinfo("Outcome",
-                                "As your fingers brush against the scorching coals, a fleeting thought of a barbecue crosses your mind, momentarily distracting you from the looming threat")
+                                "As your fingers brush against the scorching coals, a fleeting thought of a barbecue "
+                                "crosses your mind, momentarily distracting you from the looming threat")
         elif rand == 2:
             messagebox.showinfo("Outcome", 'A crumpled, blood-soaked paper with indiscernible writing')
             messagebox.showinfo("Outcome",
-                                "You attempt to read the blood-soaked note, but can't make out many words other than 'Your calculations were not correct, Mr. Student")
+                                "You attempt to read the blood-soaked note, but can't make out many words other than "
+                                "'Your calculations were not correct, Mr. Student")
     elif choice == "no":
         rand = random.randint(0, 2)
         if rand == 0:
@@ -201,13 +224,23 @@ def handle_oven():
     rand = random.randint(0, 2)
     if rand == 0:
         messagebox.showinfo("Outcome",
-                            "Your gaze falls upon a talking pie, its crusty surface contorted into a sneer as it spews venomous words at you. 'You are nothing but a pathetic, worthless imbecile' it jeers, its voice dripping with malice. Stunned by the unexpected insult, you find yourself at a loss for words, grappling with the surrealism of being verbally assaulted by a dessert.")
+                            "Your gaze falls upon a talking pie, its crusty surface contorted into a sneer as it "
+                            "spews venomous words at you. 'You are nothing but a pathetic, worthless imbecile' it "
+                            "jeers, its voice dripping with malice. Stunned by the unexpected insult, "
+                            "you find yourself at a loss for words, grappling with the surrealism of being verbally "
+                            "assaulted by a dessert.")
     elif rand == 1:
         messagebox.showinfo("Outcome",
-                            "As you cautiously open the stove's door, your gaze falls upon a grotesque sight: a forgotten, moldy steak lies upon a blood-stained tray, accompanied by the decaying head of a deer, its vacant eyes staring into the abyss. The putrid stench fills the air, assaulting your senses and sending a shiver down your spine, as you realize you are not alone in this macabre chamber and you puke a little into your own mouth.")
+                            "As you cautiously open the stove's door, your gaze falls upon a grotesque sight: a "
+                            "forgotten, moldy steak lies upon a blood-stained tray, accompanied by the decaying head "
+                            "of a deer, its vacant eyes staring into the abyss. The putrid stench fills the air, "
+                            "assaulting your senses and sending a shiver down your spine, as you realize you are not "
+                            "alone in this macabre chamber and you puke a little into your own mouth.")
     elif rand == 2:
         messagebox.showinfo("Outcome",
-                            "As you cautiously approach the oven, anticipation tinged with apprehension fills the air. With a hesitant hand, you swing open the stove's door, only to find it empty, devoid of any warmth or remnants of cooking.")
+                            "As you cautiously approach the oven, anticipation tinged with apprehension fills the "
+                            "air. With a hesitant hand, you swing open the stove's door, only to find it empty, "
+                            "devoid of any warmth or remnants of cooking.")
 kitchen()
 
 
@@ -236,7 +269,8 @@ def handle_cupboard():
         battle_thread.join()
     elif rand == 1:
         messagebox.showinfo("Outcome",
-                            "...darting around the room in a crazed frenzy, his high-pitched screams echoing off the walls like the wails of a deranged soul.")
+                            "...darting around the room in a crazed frenzy, his high-pitched screams echoing off the "
+                            "walls like the wails of a deranged soul.")
     elif rand == 2:
         messagebox.showinfo("Outcome", "...jumping in place like a crazy rabbit")
     elif rand == 3:
@@ -254,7 +288,8 @@ def handle_fridge():
     rand = random.randint(0, 2)
     if rand == 0:
         messagebox.showinfo("Outcome",
-                            "a bunch of jars filled with eyeballs which start watching you and following the movement of your hands")
+                            "a bunch of jars filled with eyeballs which start watching you and following the movement "
+                            "of your hands")
     elif rand == 1:
         messagebox.showinfo("Outcome",
                             "rows of neatly organised human and animal brains, pulsating with an eerie energy")
@@ -275,12 +310,14 @@ def explore_basement():
               | Basement |
               |__________| 
     """"As you descend the stairs, you feel a chill in the air."
-                                    "You reach the bottom and see an old rickety wooden door, barely held together by a couple i rusty nails.")
+                                    "You reach the bottom and see an old rickety wooden door, barely held together by "
+                                    "a couple of rusty nails.")
     choice = messagebox.askquestion("Decision", "Do you want to try to force the door open or search for a key?")
 
     if choice == "force":
         messagebox.showinfo("Outcome",
-                            "You try to force the door open, and it breaks down instantly, granting you acess to the basement.")
+                            "You try to force the door open, and it breaks down instantly, granting you acess to the "
+                            "basement.")
         broken_door()
 
     elif choice == "search for a key":
@@ -301,7 +338,8 @@ def broken_door():
 
     if choice == "yes":
         messagebox.showinfo("Outcome", "You see mountain of cardboard boxes in the corner of the basement,"
-                                       " a really ancient old lady rocking on her chair (she seems to be hundreds of years old), staring at the wall"
+                                       "a really ancient old lady rocking on her chair (she seems to be hundreds of "
+                                       "years old), staring at the wall"
                                        " and a small table with a severed horse head")
         choice = custom_choice_basement_dialog(root)
         if choice == 'boxes':
@@ -346,57 +384,77 @@ def handle_boxes():
                             "the mountain of boxes falls down on you. Fortunately, all of them were empty!")
     elif rand == 1:
         messagebox.showinfo("Outcome",
-                            "the first few boxes are empty, but one of them has a bunch of bones of unknown origin (most of them don't look human nor animal)\n, "
+                            "the first few boxes are empty, but one of them has a bunch of bones of unknown origin ("
+                            "most of them don't look human nor animal)\n,"
                             "another box has a 'collection' of bloodied skin patches of various shapes and sizes,\n"
                             "the next box you open has a raunchy love letter inside - you refuse to read it,\n"
-                            "a different box has a loot midget inside who scream 'I AAAAAAM DEEEEEEEELICIOOOOOOOOOUSSSSSSSSS!!!!!!!!!' - you quickly close the box, leaving the loot midget to his own devices")
+                            "a different box has a loot midget inside who scream 'I AAAAAAM "
+                            "DEEEEEEEELICIOOOOOOOOOUSSSSSSSSS!!!!!!!!!' - you quickly close the box, leaving the loot "
+                            "midget to his own devices")
         choice = messagebox.askquestion("Choice", "Do you want to open more boxes?")
 
         if choice == "yes":
             messagebox.showinfo("Outcome",
-                                "The next few boxes you open all have relatively fresh human and animal intestines, eyeballs and other nasty viscera")
+                                "The next few boxes you open all have relatively fresh human and animal intestines, "
+                                "eyeballs and other nasty viscera")
         elif choice == "no":
             messagebox.showinfo("Outcome", "You look somewhere else in the basement")
 
             choice = custom_choice_basement_dialog(root)
 
     elif rand == 2:
-        messagebox.showinfo("Outcome", " you find that the boxes contain some mechanical parts and a blueprint for something called 'N's laser'")
+        messagebox.showinfo("Outcome",
+                            "you find that the boxes contain some mechanical parts and a blueprint for something "
+                            "called 'N's laser'")
         choice = messagebox.askquestion("Decision", "Do you want to try and assemble the contraption?")
         if choice == "yes":
-            messagebox.showinfo("Outcome", "You try to assemble the laser but when you finish following the instructions on the blueprint, it only displays the following message:\n"
+            messagebox.showinfo("Outcome",
+                                "You try to assemble the laser but when you finish following the instructions on the "
+                                "blueprint, it only displays the following message:\n"
                                 "Your calculations were not correct, Mr. student! Now, DO AGAIN!!!")
             choice = messagebox.askquestion("Choice", "Do you want to try and assemble the contraption again?")
             if choice == "yes":
                 bool = 1;
-                while (bool):
+                while bool:
                     choice = messagebox.askquestion("Choice", "Do you want to try and assemble the contraption again?")
                     if choice == "yes":
                         messagebox.showinfo("Your calculations were not correct, Mr. student! Now, DO AGAIN!!!")
                     elif choice == "no":
-                        messagebox.showinfo("Outcome", "You give up, knowing that you will never wield the power of N's laser")
+                        messagebox.showinfo("Outcome",
+                                            "You give up, knowing that you will never wield the power of N's laser")
                         bool = 0
             elif choice == "no":
                 messagebox.showinfo("Outcome", "You give up, knowing that you will never wield the power of N's laser")
         elif choice == "no":
-            messagebox.showinfo("Outcome", "You give up without even attempting to assemble the device, knowing that you will never wield the power of N's laser")
+            messagebox.showinfo("Outcome",
+                                "You give up without even attempting to assemble the device, knowing that you will "
+                                "never wield the power of N's laser")
     explore_basement()
+
 
 def handle_creepyGrandma():
     messagebox.showinfo("Outcome", "You go near the almost fossilised old grandma")
     messagebox.showinfo("Outcome", "The old creepy grandma follows your movements with her sight and nothing more,\n"
-                                   "giving you the impression that inside the old shriveled and calcified carcass, the mind is still very very VERY functional")
-    messagebox.showinfo("Outcome", "You back away from the creepy grandma, filled with fear and extreme unease as she keeps scanning your every movement")
-    messagebox.showinfo("Outcome", "You try exploring other parts of the basement, not wanting to interact with the creepy grandma ever again.")
+                                   "giving you the impression that inside the old shriveled and calcified carcass, "
+                                   "the mind is still very very VERY functional")
+    messagebox.showinfo("Outcome",
+                        "You back away from the creepy grandma, filled with fear and extreme unease as she keeps "
+                        "scanning your every movement")
+    messagebox.showinfo("Outcome",
+                        "You try exploring other parts of the basement, not wanting to interact with the creepy "
+                        "grandma ever again.")
     explore_basement()
+
 
 def handle_head():
     messagebox.showinfo("Outcome", "You approach the severed horse head.\n"
                                    "Blood still drips from where the head was presumably attached to its body")
-    messagebox.showinfo("Outcome", "Suddenly, the horse head stares you right in the eyes and says, with a deep demonic voice, in an ominous tone:\n"
-                                   "In the shadows, I wait,\n"
-                                   "Questions whispered in the dark,\n"
-                                   "Ask, and I shall answer.")
+    messagebox.showinfo("Outcome",
+                        "Suddenly, the horse head stares you right in the eyes and says, with a deep demonic voice, "
+                        "in an ominous tone:\n"
+                        "In the shadows, I wait,\n"
+                        "Questions whispered in the dark,\n"
+                        "Ask, and I shall answer.")
 
     choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
     choice = custom_choice_basement_dialog(root)
@@ -406,6 +464,7 @@ def handle_head():
         handle_creepyGrandma()
     elif choice == 'head':
         handle_head()
+
 
 def custom_choice_horseHead_dialog(parent):
     dialog = tk.Toplevel(parent)
@@ -419,22 +478,28 @@ def custom_choice_horseHead_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "")).pack(side="left",
+                                                                                                      padx=5)
+    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "")).pack(side="left",
+                                                                                                           padx=5)
+    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "")).pack(side="left",
+                                                                                                          padx=5)
+    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "")).pack(side="left",
+                                                                                                           padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
 
+
 def secret_passage():
     messagebox.showinfo("Secret Passage", """
                 ________________
-               /                \ 
+               /                /
               /   Secret       /
-              \  Passage      /
-               \_____________/ 
+              /  Passage      /
+               /_____________/ 
     """
                                           "You discover a secret passage behind a bookshelf.\n"
                                           "As you explore further, you find yourself in a dark corridor.\n"
@@ -499,9 +564,9 @@ def handle_find_another_way():
 def attic():
     messagebox.showinfo("Attic", """
                 ____________
-               /            \ 
+               /            / 
               /    Attic    /
-              \____________/ 
+              /____________/ 
     """
                                  "You climb up to the attic, dust and cobwebs greeting your every step."
                                  "In the dim light, you spot an old chest.")
@@ -520,9 +585,9 @@ def attic():
 def explore_garden():
     messagebox.showinfo("Garden", """
                 ___________
-               /           \ 
+               /           / 
               /   Garden    /
-              \____________/ 
+              / ____________/ 
     """
                                   "You step out into the overgrown garden, nature having reclaimed much of it."
                                   "In the distance, you see a mausoleum.")
@@ -534,8 +599,10 @@ def explore_garden():
         secret_passage()
     elif choice == "no":
         messagebox.showinfo("Outcome", "You decide to avoid the mausoleum and explore the garden further."
-                                       "Amidst the foliage, you find a forgotten fountain with coins scattered at the bottom."
-                                       "You collect the coins and return to the mansion, feeling a strange sense of unease.")
+                                       "Amidst the foliage, you find a forgotten fountain with coins scattered at the "
+                                       "bottom."
+                                       "You collect the coins and return to the mansion, feeling a strange sense of "
+                                       "unease.")
 
 
 # Define process_input function
@@ -572,11 +639,6 @@ def trigger_random_event():
     # Add more random events as needed
 
 
-# Create the main GUI window
-root = Tk()
-root.title("Haunted Mansion")
-
-
 def show_main_menu():
     nickname()
     introduction()
@@ -607,5 +669,5 @@ def show_main_menu():
 
 show_main_menu()
 
-# Display the main menu
-root.mainloop()
+# Play the game
+play_game()
