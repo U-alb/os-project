@@ -4,7 +4,6 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 from tkinter.tix import Tk
 from threading import Thread
-
 import pygame
 
 pygame.init()
@@ -127,6 +126,7 @@ def living_room():
                                 "breath, relieved yet wary of the potential consequences lurking in the shadows.")
         else:
             messagebox.showinfo("Outcome", "Bulbuc bites your crotch.")
+            pygame.mixer.Sound("assets/sounds/dog.mp3").play()
             Bulbuc = Enemy("Bulbuc", 15, 8, 2)
             battle_thread = Thread(target=battle, args=(player, Bulbuc))
             battle_thread.start()
@@ -789,8 +789,28 @@ def explore_garden():
 
     if choice == "yes":
         messagebox.showinfo("Outcome", "As you explore the garder, the gastly trees start moving around, voicelss and only"
-                                       "displaying the sheer terror of the people which were transforemed into them.")
-        secret_passage()
+                                       "displaying the sheer terror of the people which were transformed into them.")
+        Living_tree = Enemy("Living Tree", 25, 10, 9)
+        battle_thread = Thread(target=battle, args=(player, Living_tree))
+        battle_thread.start()
+        battle_thread.join()
+
+        choice = messagebox.askquestion("Decision", "Do you want to further explore the garden")
+
+        if choice == "yes":
+            messagebox.showinfo("Oucome", "You get attacked by more living trees!")
+
+            battle_thread = Thread(target=battle, args=(player, Living_tree))
+            battle_thread.start()
+            battle_thread.join()
+
+            battle_thread = Thread(target=battle, args=(player, Living_tree))
+            battle_thread.start()
+            battle_thread.join()
+
+            messagebox.showinfo("Outcome", "Insie the bark of onw of the living trees you discover a note, the writing on it ssays:\n"
+                                           "I found it! I found the password!!!!")
+
     elif choice == "no":
         messagebox.showinfo("Outcome", "You decide to avoid the mausoleum and explore the garden further."
                                        "Amidst the foliage, you find a forgotten fountain with coins scattered at the bottom."
