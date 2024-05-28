@@ -44,26 +44,38 @@ class Enemy:
 
 
 def battle(player, enemy):
-    messagebox.showinfo("Outcome", "A fierce " + enemy.name + " attacks!")
-    while player.is_alive() and enemy.is_alive():
-        player.print_status()
-        enemy.print_status()
+    def run_battle():
+        try:
+            root.after(0, lambda: messagebox.showinfo("Outcome", "A fierce " + enemy.name + " attacks!"))
+            while player.is_alive() and enemy.is_alive():
+                root.after(0, player.print_status)
+                root.after(0, enemy.print_status)
 
-        player_damage = max(0, player.attack - enemy.defense)
-        enemy.take_damage(player_damage)
-        messagebox.showinfo("Outcome", f"You hit the {enemy.name} for {player_damage} damage.")
+                player_damage = max(0, player.attack - enemy.defense)
+                enemy.take_damage(player_damage)
+                root.after(0, lambda: messagebox.showinfo("Outcome",
+                                                          f"You hit the {enemy.name} for {player_damage} damage."))
 
-        if enemy.is_alive():
-            enemy_damage = max(0, enemy.attacking - player.defense)
-            player.health -= enemy_damage
-            messagebox.showinfo("Outcome", f"The {enemy.name} strikes you for {enemy_damage} damage.")
-        time.sleep(1)  # Add a small delay for combat actions
+                if enemy.is_alive():
+                    enemy_damage = max(0, enemy.attacking - player.defense)
+                    player.health -= enemy_damage
+                    root.after(0, lambda: messagebox.showinfo("Outcome",
+                                                              f"The {enemy.name} strikes you for {enemy_damage} damage."))
+                time.sleep(1)  # Simulate time delay between turns
 
-    if player.is_alive():
-        messagebox.showinfo("Outcome", "\nVictory! You have defeated the " + enemy.name + "!")
+            if player.is_alive():
+                root.after(0,
+                           lambda: messagebox.showinfo("Outcome", "Victory! You have defeated the " + enemy.name + "!"))
+            else:
+                root.after(0, lambda: messagebox.showinfo("Outcome",
+                                                          "You have been slain by the " + enemy.name + "! YOU DIED"))
 
-    else:
-        messagebox.showinfo("Outcome", "\nYou have been slain by the " + enemy.name + "!" + "YOU DIED")
+        except Exception as e:
+            print(f"Error in battle thread: {str(e)}")
+            root.after(0, lambda: messagebox.showerror("Error", "An error occurred during battle."))
+
+    battle_thread = Thread(target=run_battle)
+    battle_thread.start()
 
 
 def nickname():
@@ -172,15 +184,15 @@ def kitchen():
         choice = messagebox.askquestion("Decision", "Do you want to further explore the kitchen ?")
         if choice == "yes":
             messagebox.showinfo("Outcome", "You see an oven, a cupboard and a fridge")
-    choice = custom_choice_dialog(root)
-    if choice == 'Oven':
-        handle_oven()
-    elif choice == 'Cupboard':
-        handle_cupboard()
-    elif choice == 'Fridge':
-        handle_fridge()
-    else:
-        messagebox.showinfo("Outcome", "You decided to do nothing.")
+            choice = custom_choice_dialog(root)
+            if choice == 'Oven':
+                handle_oven()
+            elif choice == 'Cupboard':
+                handle_cupboard()
+            elif choice == 'Fridge':
+                handle_fridge()
+        elif choice == "no":
+            messagebox.showinfo("Outcome", "You decided to do nothing.")
 
 
 def custom_choice_dialog(parent):
@@ -196,8 +208,10 @@ def custom_choice_dialog(parent):
     choice.set(None)
 
     tk.Button(button_frame, text="Oven", command=lambda: set_choice(dialog, choice, "Oven")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left",
+                                                                                                          padx=5)
+    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left",
+                                                                                                      padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -353,9 +367,12 @@ def custom_choice_basement_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Look inside the cardboard boxes", command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Try to see if the old lady is still alive", command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Look inside the cardboard boxes",
+              command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Try to see if the old lady is still alive",
+              command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(
+        side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -392,8 +409,9 @@ def handle_boxes():
                                        "something called 'N's laser'")
         choice = messagebox.askquestion("Decision", "Do you want to try and assemble the contraption?")
         if choice == "yes":
-            messagebox.showinfo("Outcome", "You try to assemble the laser but when you finish following the instructions on the blueprint, it only displays the following message:\n"
-                                           "Your calculations were not correct, Mr. student! Now, DO AGAIN!!!")
+            messagebox.showinfo("Outcome",
+                                "You try to assemble the laser but when you finish following the instructions on the blueprint, it only displays the following message:\n"
+                                "Your calculations were not correct, Mr. student! Now, DO AGAIN!!!")
             choice = messagebox.askquestion("Choice", "Do you want to try and assemble the contraption again?")
             if choice == "yes":
                 bool = 1;
@@ -402,29 +420,36 @@ def handle_boxes():
                     if choice == "yes":
                         messagebox.showinfo("Your calculations were not correct, Mr. student! Now, DO AGAIN!!!")
                     elif choice == "no":
-                        messagebox.showinfo("Outcome", "You give up, knowing that you will never wield the power of N's laser")
+                        messagebox.showinfo("Outcome",
+                                            "You give up, knowing that you will never wield the power of N's laser")
                         bool = 0
             elif choice == "no":
                 messagebox.showinfo("Outcome", "You give up, knowing that you will never wield the power of N's laser")
         elif choice == "no":
-            messagebox.showinfo("Outcome", "You give up without even attempting to assemble the device, knowing that you will never wield the power of N's laser")
+            messagebox.showinfo("Outcome",
+                                "You give up without even attempting to assemble the device, knowing that you will never wield the power of N's laser")
     broken_door()
+
 
 def handle_creepyGrandma():
     messagebox.showinfo("Outcome", "You go near the almost fossilised old grandma")
     messagebox.showinfo("Outcome", "The old creepy grandma follows your movements with her sight and nothing more,\n"
                                    "giving you the impression that inside that old shriveled and calcified carcass, the mind is still very very VERY functional")
-    messagebox.showinfo("Outcome", "You back away from the creepy grandma, filled with fear and extreme unease as she keeps scanning your every movement")
-    messagebox.showinfo("Outcome", "You try exploring other parts of the basement, not wanting to interact with the creepy grandma ever again.")
+    messagebox.showinfo("Outcome",
+                        "You back away from the creepy grandma, filled with fear and extreme unease as she keeps scanning your every movement")
+    messagebox.showinfo("Outcome",
+                        "You try exploring other parts of the basement, not wanting to interact with the creepy grandma ever again.")
     broken_door()
+
 
 def handle_head():
     messagebox.showinfo("Outcome", "You approach the severed horse head.\n"
                                    "Blood still drips from where the head was presumably attached to its body")
-    messagebox.showinfo("Outcome", "Suddenly, the horse head stares you right in the eyes and says, with a deep demonic voice, in an ominous tone:\n"
-                                   "In the shadows, I wait,\n"
-                                   "Questions whispered in the dark,\n"
-                                   "Ask, and I shall answer.")
+    messagebox.showinfo("Outcome",
+                        "Suddenly, the horse head stares you right in the eyes and says, with a deep demonic voice, in an ominous tone:\n"
+                        "In the shadows, I wait,\n"
+                        "Questions whispered in the dark,\n"
+                        "Ask, and I shall answer.")
 
     choice = messagebox.askquestion("Choice", "What do you ask the severed horse head?")
     choice = custom_choice_horseHead_dialog(root)
@@ -439,6 +464,7 @@ def handle_head():
     elif choice == 'Want':
         handle_want()
 
+
 def custom_choice_horseHead_dialog(parent):
     dialog = tk.Toplevel(parent)
     dialog.title("Decision")
@@ -451,14 +477,20 @@ def custom_choice_horseHead_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "Who")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "What")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "Why")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "Help")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "Want")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "Who")).pack(side="left",
+                                                                                                         padx=5)
+    tk.Button(button_frame, text="What happened here?", command=lambda: set_choice(dialog, choice, "What")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="Why are you here?", command=lambda: set_choice(dialog, choice, "Why")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="Can you help me?", command=lambda: set_choice(dialog, choice, "Help")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="What do you want?", command=lambda: set_choice(dialog, choice, "Want")).pack(
+        side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
+
 
 def handle_who():
     messagebox.showinfo("Outcome", "You ask the head 'who' it is, and it responds...")
@@ -497,6 +529,7 @@ def handle_who():
     elif choice == "no":
         broken_door()
 
+
 def handle_what():
     messagebox.showinfo("Outcome", "You ask the horse head what happened here. It responds...")
     rand = random.randint(0, 3)
@@ -533,6 +566,7 @@ def handle_what():
             handle_want()
     elif choice == "no":
         broken_door()
+
 
 def handle_why():
     messagebox.showinfo("Outcome", "You ask the horse head why is it here. It responds...")
@@ -571,6 +605,7 @@ def handle_why():
     elif choice == "no":
         broken_door()
 
+
 def handle_help():
     messagebox.showinfo("Outcome", "You ask the horse head if it can help you. It responds...")
     rand = random.randint(0, 3)
@@ -608,6 +643,7 @@ def handle_help():
     elif choice == "no":
         broken_door()
 
+
 def handle_want():
     messagebox.showinfo("Outcome", "You ask the horse head what it wants from you. It responds...")
     rand = random.randint(0, 3)
@@ -644,7 +680,6 @@ def handle_want():
             handle_want()
     elif choice == "no":
         broken_door()
-
 
 
 def secret_passage():
@@ -743,13 +778,18 @@ def explore_garden():
               /   Garden    /
               \____________/ 
     """
-                                  "You step out into the overgrown garden, nature having reclaimed much of it."
-                                  "In the distance, you see a mausoleum.")
-    choice = messagebox.askquestion("Decision", "Do you want to approach the mausoleum?")
+                                  "As you step into the overgrown garden of the old estate, the air thickens with the scent of decay.\n"
+                                  "Vines twist like sinew across the path, grasping for something to hold.\n"
+                                  "The ground, sponge-like and moist, seems to pulse underfoot.\n"
+                                  "Trees with limbs twisted into grotesque forms watch over a ghastly scene:\n"
+                                  "humanoid figures, once guests, now entwined and calcified by relentless ivy, their faces frozen in silent screams.\n"
+                                  "At the heart of the garden, a murky pond reveals faces submerged beneath algae, water lilies rooting through their eye sockets in a horrifying embrace of flesh and flora."
+                                  "")
+    choice = messagebox.askquestion("Decision", "Do you want to explore the garden?")
 
     if choice == "yes":
-        messagebox.showinfo("Outcome", "As you approach the mausoleum, the door creaks open on its own."
-                                       "Inside, you find the resting place of your ancestors and a hidden passage.")
+        messagebox.showinfo("Outcome", "As you explore the garder, the gastly trees start moving around, voicelss and only"
+                                       "displaying the sheer terror of the people which were transforemed into them.")
         secret_passage()
     elif choice == "no":
         messagebox.showinfo("Outcome", "You decide to avoid the mausoleum and explore the garden further."

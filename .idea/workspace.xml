@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c55e713-684f-4d1e-afef-0a7bb4c79c66" name="Changes" comment="backup">
+    <list default="true" id="4c55e713-684f-4d1e-afef-0a7bb4c79c66" name="Changes" comment="backup before threads">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/story.py" afterDir="false" />
     </list>
-    <list id="ddea85ff-d538-46ae-bd54-fefebcbf17c2" name="Changes by vladvulturescu" comment="" />
+    <list id="ddea85ff-d538-46ae-bd54-fefebcbf17c2" name="Changes by vladvulturescu" comment="">
+      <change beforePath="$PROJECT_DIR$/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/story.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +23,38 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/story.py">
+      <ranges>
+        <range start1="46" end1="50" start2="46" end2="52" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
+        <range start1="51" end1="54" start2="53" end2="57" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
+        <range start1="55" end1="60" start2="58" end2="64" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
+        <range start1="61" end1="66" start2="65" end2="71" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
+        <range start1="67" end1="67" start2="72" end2="78" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
+        <range start1="68" end1="68" start2="79" end2="80" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="86" end1="86" start2="98" end2="109" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="174" end1="183" start2="197" end2="206" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="198" end1="200" start2="221" end2="225" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="355" end1="358" start2="380" end2="386" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="394" end1="396" start2="422" end2="425" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="404" end1="405" start2="433" end2="435" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="409" end1="410" start2="439" end2="441" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="412" end1="412" start2="443" end2="444" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="416" end1="418" start2="448" end2="452" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="420" end1="420" start2="454" end2="455" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="423" end1="427" start2="458" end2="463" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="441" end1="441" start2="477" end2="478" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="453" end1="458" start2="490" end2="500" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="462" end1="462" start2="504" end2="505" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="499" end1="499" start2="542" end2="543" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="536" end1="536" start2="580" end2="581" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="573" end1="573" start2="618" end2="619" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="610" end1="610" start2="656" end2="657" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="648" end1="649" start2="695" end2="695" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
+        <range start1="746" end1="747" start2="792" end2="793" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -61,7 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1715799905287</updated>
       <workItem from="1715799906424" duration="12000" />
-      <workItem from="1716901807073" duration="8382000" />
+      <workItem from="1716901807073" duration="10836000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <option name="closed" value="true" />
@@ -79,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716906933385</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="backup before threads">
+      <option name="closed" value="true" />
+      <created>1716912864326</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716912864326</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,9 +129,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="backup" />
-    <option name="LAST_COMMIT_MESSAGE" value="backup" />
+    <MESSAGE value="backup before threads" />
+    <option name="LAST_COMMIT_MESSAGE" value="backup before threads" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/os_project$story.coverage" NAME="story Coverage Results" MODIFIED="1716906445033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/os_project$story.coverage" NAME="story Coverage Results" MODIFIED="1716914982472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
