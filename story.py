@@ -197,10 +197,8 @@ def custom_choice_dialog(parent):
     choice.set(None)
 
     tk.Button(button_frame, text="Oven", command=lambda: set_choice(dialog, choice, "Oven")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left",
-                                                                                                          padx=5)
-    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left",
-                                                                                                      padx=5)
+    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -366,12 +364,9 @@ def custom_choice_basement_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Look inside the cardboard boxes",
-              command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Try to see if the old lady is still alive",
-              command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(
-        side="left", padx=5)
+    tk.Button(button_frame, text="Look inside the cardboard boxes", command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Try to see if the old lady is still alive", command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -430,7 +425,6 @@ def handle_boxes():
                                 "You give up without even attempting to assemble the device, knowing that you will never wield the power of N's laser")
     broken_door()
 
-
 def handle_creepyGrandma():
     messagebox.showinfo("Outcome", "You go near the almost fossilised old grandma")
     messagebox.showinfo("Outcome", "The old creepy grandma follows your movements with her sight and nothing more,\n"
@@ -463,7 +457,6 @@ def handle_head():
         handle_help()
     elif choice == 'Want':
         handle_want()
-
 
 def custom_choice_horseHead_dialog(parent):
     dialog = tk.Toplevel(parent)
@@ -528,7 +521,6 @@ def handle_who():
             handle_want()
     elif choice == "no":
         broken_door()
-
 
 def handle_what():
     messagebox.showinfo("Outcome", "You ask the horse head what happened here. It responds...")
