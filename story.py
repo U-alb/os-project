@@ -26,6 +26,9 @@ class Player:
     def modify_attack(self, value):
         self.attack = value
 
+    def modify_defense(self, value):
+        self.defense = value
+
 
 class Enemy:
     def __init__(self, name, health, attack, defense):
@@ -685,8 +688,8 @@ def secret_passage():
                                           "You discover a secret passage behind a bookshelf.\n"
                                           "As you explore further, you find yourself in a dark corridor.\n"
                                           "Suddenly, the passage collapses behind you, blocking your way back.\n")
-    root.withdraw()
-    messagebox.showinfo("Decision", "Do you want to continue forward or try to find another way back?")
+
+
     choice = custom_choice_dialog2(root)
 
     if choice == 'Continue Forward':
@@ -749,18 +752,46 @@ def attic():
               /    Attic    /
               \____________/ 
     """
-                                 "You climb up to the attic, dust and cobwebs greeting your every step."
-                                 "In the dim light, you spot an old chest.")
-    choice = messagebox.askquestion("Decision", "Do you want to open the chest?")
-    if choice == "yes":
-        messagebox.showinfo("Outcome", "You open the chest and find a collection of cursed artifacts."
-                                       "As you touch one, a dark energy surges through you, consuming your soul."
-                                       "You are now bound to the mansion for eternity.")
-    elif choice == "no":
-        messagebox.showinfo("Outcome", "You decide not to open the chest."
-                                       "As you turn to leave, you hear a faint whisper echoing in the attic."
-                                       "It beckons you to stay, but you resist and quickly descend back down to safety.")
+                                 "You climb up to the attic, dust and cobwebs creeping clouding the air with every step.\n"
+                                 "As you enter the attic, the old floorboards creak lodly under your footsteps"
+                                 "In the dim light, you spot an old chest, a _placeholder_ with 6 drawers and some old pictures on it, and and object coverd with what seems to be a heavy shroud")
 
+    choice = custom_choice_attic_decision
+    if choice == "chest":
+        handle_chest()
+    elif choice == "_placeholder_":
+        handle__placeholder_()
+    elif choice == "obj":
+        handle_obj()
+
+    messagebox.showinfo("Outcome", "Something to progress to the endgame - TBD")
+def custom_choice_attic_decision(parent):
+    dialog = tk.Toplevel(parent)
+    dialog.title("Decision")
+
+    tk.Label(dialog, text="What do you check out first?").pack(padx=20, pady=10)
+
+    button_frame = tk.Frame(dialog)
+    button_frame.pack(pady=10)
+
+    choice = tk.StringVar()
+    choice.set(None)
+
+    tk.Button(button_frame, text="The chest", command=lambda: set_choice(dialog, choice, "chest")).pack(side="left",
+                                                                                                         padx=5)
+    tk.Button(button_frame, text="The _placeholder_", command=lambda: set_choice(dialog, choice, "_placeholder_")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="The object covered with the heavy shroud", command=lambda: set_choice(dialog, choice, "object")).pack(
+        side="left", padx=5)
+
+    dialog.wait_window(dialog)
+    return choice.get()
+def handle_chest():
+    messagebox.showinfo("Outcome", "TBD")
+def handle__placeholder_():
+    messagebox.showinfo("Outcome", "TBD")
+def handle_obj():
+    messagebox.showinfo("Outcome", "TBD")
 
 # Define the explore garden function
 def explore_garden():
@@ -790,28 +821,103 @@ def explore_garden():
         messagebox.showinfo("Outcome", "As you explore the guarder, the ghastly trees start moving around, voiceless "
                                        "and only displaying the sheer terror of the people which were transformed "
                                        "into them.")
-        Living_tree = Enemy("Living Tree", 25, 10, 9)
-        Player.modify_attack(player, player.attack + 20)
+
+        messagebox.showinfo("Outcome", "You find a lit torch.\n"
+                                       "You take it with you in order to defend yourself and light the surrounding areas\n"
+                                       "Damage permanently increased by 10!")
+        Player.modify_attack(player, player.attack + 10)
+
+        Living_tree = Enemy("Living Tree", 25, 8, 6)
+
+        messagebox.showinfo("Outcome", "The living trees suddendly star mooving and moving the wooden humanoid on their bark")
+        battle(player, Living_tree)
+        battle(player, Living_tree)
         battle(player, Living_tree)
 
         choice = messagebox.askquestion("Decision", "Do you want to further explore the garden")
 
         if choice == "yes":
             messagebox.showinfo("Outcome", "You get attacked by more living trees!")
-
+            battle(player, Living_tree)
+            battle(player, Living_tree)
+            battle(player, Living_tree)
             messagebox.showinfo("Outcome", "Inside the bark of one of the living trees you discover a note, "
                                            "the writing on it says:\n"
                                            "I found it! I found the password!!!! It's 'I see...'\n"
                                            "The writing after 'see' isn't readable. ")
             messagebox.showinfo("Outcome", "You are intrigued by what you found. You should remember the writing on "
                                            "the ")
+            choice = messagebox.askquestion("Decision", "Do you want to further explore the garden?")
 
+            if choice == "yes":
+                messagebox.showinfo("Outcome", "As you try to navigate the overgrown garden,\n"
+                                               "you start noticing all sorts of plant roots coming out of the ground like dead nerve endings.\n"
+                                               " \n"
+                                               "All of a sudden multiple squid-like root clusters start bursting out of the ground\n"
+                                               "and shriek from their elephant trunks with prianha teeth fin place of snouts")
+                Root_squid = Enemy ("Root Squid", 5, 5, 5)
+                battle(player, Root_squid)
+                battle(player, Root_squid)
+                battle(player, Root_squid)
+                battle(player, Root_squid)
+                battle(player, Root_squid)
+                messagebox.showinfo("Outcome", "After fighting what feels like hundreds of root squids the ground beneeth you starts shaging\n"
+                                               "and a giant root squid rises from the ground")
+                Giant_root_squid = Enemy("Giant Root Squid", 100, 5, 0)
+                battle(player, Giant_root_squid)
+                messagebox.showinfo("Outcome", "You defeat the giant root squid, breathing a sigh of relief.\n"
+                                               "Somewhere, stuck between the giant root squid's roots, you find a piece of combat armour!\n"
+                                               "You equip the combat armor, gaining plus 15 defense!")
+                Player.modify_defense(player, player.defense + 15);
+
+                messagebox.showinfo("Outcome", "You don't seem to find anything else of interest in the garden, so you return to the main hall")
+            elif choice == "no":
+                messagebox.showinfo("Outcome", "You return to the main hall")
+        elif choice == "no":
+            choice = messagebox.askquestion("Decision", "Are you sure? There's probably something very important in the garden!")
+            if choice == "yes":
+                messagebox.showinfo("Outcome", "You get attacked by more living trees!")
+                battle(player, Living_tree)
+                battle(player, Living_tree)
+                battle(player, Living_tree)
+                messagebox.showinfo("Outcome", "Inside the bark of one of the living trees you discover a note, "
+                                               "the writing on it says:\n"
+                                               "I found it! I found the password!!!! It's 'I see...'\n"
+                                               "The writing after 'see' isn't readable. ")
+                messagebox.showinfo("Outcome",
+                                    "You are intrigued by what you found. You should remember the writing on "
+                                    "the ")
+                choice = messagebox.askquestion("Decision", "Do you want to further explore the garden?")
+
+                if choice == "yes":
+                    messagebox.showinfo("Outcome", "As you try to navigate the overgrown garden,\n"
+                                                   "you start noticing all sorts of plant roots coming out of the ground like dead nerve endings.\n"
+                                                   " \n"
+                                                   "All of a sudden multiple squid-like root clusters start bursting out of the ground\n"
+                                                   "and shriek from their elephant trunks with prianha teeth fin place of snouts")
+                    Root_squid = Enemy("Root Squid", 5, 5, 5)
+                    battle(player, Root_squid)
+                    battle(player, Root_squid)
+                    battle(player, Root_squid)
+                    battle(player, Root_squid)
+                    battle(player, Root_squid)
+                    messagebox.showinfo("Outcome",
+                                        "After fighting what feels like hundreds of root squids the ground beneeth you starts shaging\n"
+                                        "and a giant root squid rises from the ground")
+                    Giant_root_squid = Enemy("Giant Root Squid", 100, 5, 0)
+                    battle(player, Giant_root_squid)
+                    messagebox.showinfo("Outcome", "You defeat the giant root squid, breathing a sigh of relief.\n"
+                                                   "Somewhere, stuck between the giant root squid's roots, you find a piece of combat armour!\n"
+                                                   "You equip the combat armor, gaining plus 15 defense!")
+                    Player.modify_defense(player, player.defense + 15);
+                    messagebox.showinfo("Outcome",
+                                        "You don't seem to find anything else of interest in the garden, so you return to the main hall")
+                elif choice == "no":
+                    messagebox.showinfo("Outcome", "You return to the main hall")
+            elif choice == "no":
+                messagebox.showinfo("Outcome", "You return to the main hall")
     elif choice == "no":
-        messagebox.showinfo("Outcome", "You decide to avoid the mausoleum and explore the garden further."
-                                       "Amidst the foliage, you find a forgotten fountain with coins scattered at the "
-                                       "bottom."
-                                       "You collect the coins and return to the mansion, feeling a strange sense of "
-                                       "unease.")
+        messagebox.showinfo("Outcome", "You retiun to the main hall")
 
 
 # Define process_input function

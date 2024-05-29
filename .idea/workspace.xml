@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c55e713-684f-4d1e-afef-0a7bb4c79c66" name="Changes" comment="added dog barking">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/os-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/os-project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/story.py" afterDir="false" />
     </list>
-    <list id="ddea85ff-d538-46ae-bd54-fefebcbf17c2" name="Changes by vladvulturescu" comment="">
-      <change beforePath="$PROJECT_DIR$/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/story.py" afterDir="false" />
-    </list>
+    <list id="ddea85ff-d538-46ae-bd54-fefebcbf17c2" name="Changes by vladvulturescu" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,41 +24,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/story.py">
-      <ranges>
-        <range start1="24" end1="24" start2="24" end2="27" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="45" end1="51" start2="48" end2="52" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="52" end1="56" start2="53" end2="56" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="57" end1="63" start2="57" end2="62" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="64" end1="77" start2="63" end2="68" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="127" end1="127" start2="118" end2="119" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="128" end1="129" start2="120" end2="120" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="130" end1="133" start2="121" end2="122" changelist="ddea85ff-d538-46ae-bd54-fefebcbf17c2" />
-        <range start1="249" end1="249" start2="238" end2="239" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="253" end1="253" start2="243" end2="244" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="255" end1="255" start2="246" end2="247" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="257" end1="257" start2="249" end2="250" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="259" end1="259" start2="252" end2="253" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="261" end1="261" start2="255" end2="256" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="266" end1="266" start2="261" end2="262" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="272" end1="272" start2="268" end2="269" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="276" end1="276" start2="273" end2="274" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="278" end1="278" start2="276" end2="277" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="381" end1="381" start2="380" end2="381" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="686" end1="687" start2="686" end2="687" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="774" end1="774" start2="774" end2="776" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="780" end1="781" start2="782" end2="784" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="784" end1="786" start2="787" end2="792" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="787" end1="787" start2="793" end2="794" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="790" end1="792" start2="797" end2="800" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="793" end1="796" start2="801" end2="803" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="800" end1="805" start2="807" end2="808" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="806" end1="812" start2="809" end2="815" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-        <range start1="815" end1="817" start2="818" end2="822" changelist="4c55e713-684f-4d1e-afef-0a7bb4c79c66" />
-      </ranges>
-    </file>
-  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "VladVulturescu"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/U-alb/os2-project.git",
+    "accountId": "369f4929-40c7-4589-af78-f4ac4121ac49"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -71,7 +48,7 @@
   "keyToString": {
     "Python.story.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "pre-threads",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/vladvulturescu/Downloads/os-project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -104,6 +81,7 @@
       <updated>1715799905287</updated>
       <workItem from="1715799906424" duration="12000" />
       <workItem from="1716901807073" duration="18548000" />
+      <workItem from="1716937013359" duration="6750000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <option name="closed" value="true" />
