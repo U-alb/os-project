@@ -753,8 +753,9 @@ def attic():
               \____________/ 
     """
                                  "You climb up to the attic, dust and cobwebs creeping clouding the air with every step.\n"
-                                 "As you enter the attic, the old floorboards creak lodly under your footsteps"
-                                 "In the dim light, you spot an old chest, a _placeholder_ with 6 drawers and some old pictures on it, and and object coverd with what seems to be a heavy shroud")
+                                 "As you enter the attic, the old floorboards creak loudly under your footsteps"
+                                 "In the dim light, you spot an old chest, a _placeholder_ with 6 drawers and some "
+                                 "old pictures on it, and and object covered with what seems to be a heavy shroud")
 
     choice = custom_choice_attic_decision(root)
     if choice == "chest":
@@ -844,7 +845,8 @@ def handle_chest():
                 messagebox.showinfo("Outcome", "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
                                                "but not before an old piece of paper falls from its pages.")
                 messagebox.showinfo("Outcome", "The text on the paper is barely readable,\n"
-                                               "but the two words you can make out from the middle of teh sentance read:\n"
+                                               "but the two words you can make out from the middle of the sentence "
+                                               "read:\n"
                                                "'...the darkness...'")
                 messagebox.showinfo("Important Info", "The information you found on the piece of paper seems to be of great importance!\n"
                                                       "You would do well to remember it!")
@@ -859,7 +861,7 @@ def handle_chest():
                             "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
                             "but not before an old piece of paper falls from its pages.")
         messagebox.showinfo("Outcome", "The text on the paper is barely readable,\n"
-                                       "but the two words you can make out from the middle of teh sentance read:\n"
+                                       "but the two words you can make out from the middle of the sentence read:\n"
                                        "'...the darkness...'")
         messagebox.showinfo("Important Info",
                             "The information you found on the piece of paper seems to be of great importance!\n"
@@ -876,7 +878,7 @@ def handle_chest():
 
 def handle_commode():
     messagebox.showinfo("Outcome", "You go over to the commode and, on the right side, you see a lot of family pictures,\n"
-                                   "pictures of the Ravenwood familly - the owners of the estate in whoch you find yourself.\n"
+                                   "pictures of the Ravenwood family - the owners of the estate in which you find yourself.\n"
                                    " \n"
                                    "On the left side of the commode, you see an old and crappy notebook, yellowed out by the passing of time")
 
@@ -931,8 +933,8 @@ def handle_notebook():
                                    "A boy named Jimmy and a girl named Elizabeth")
     messagebox.showinfo("Notebook", "You find out that the family was quite happy until something happened and their relationship started to deteriorate.")
     messagebox.showinfo("Notebook", "The entries stop suddenly for a couple of moths,\n"
-                                    "the final entry saying that the caregiver never wnated to set foot in 'that cursed hose' ever again")
-    messagebox.showinfo("Outocme", "Deeply troubled by your recent findings, you decide to put the diary down and focus your attention somewhere else")
+                                    "the final entry saying that the caregiver never wanted to set foot in 'that cursed hose' ever again")
+    messagebox.showinfo("Outcome", "Deeply troubled by your recent findings, you decide to put the diary down and focus your attention somewhere else")
 
     choice = messagebox.askquestion("Commode", "Do you want to look on the other side of the commode?")
 
@@ -951,11 +953,11 @@ def handle_notebook():
 
 def handle_obj():
     messagebox.showinfo("Object", "You pull the heavy shroud off of the object to uncover a disturbing looking brass sculpture.\n"
-                                   "The sculpture looks like an amorphous mass, a formless entity that has taken shape, an amalgamation of human and 'alien' boddy parts.\n"
+                                   "The sculpture looks like an amorphous mass, a formless entity that has taken shape, an amalgamation of human and 'alien' body parts.\n"
                                    "Staring at it feels you with a terrifying unease and a feeling, but you get closer to the sculpture nonetheless")
     messagebox.showinfo("Brass Sculpture","As you get closer to the brass shape you feel pulled towards it by mysterious forces beyond your comprehension.\n"
-                                          "On the central part of the brass sculpture you see something writeen in what appears to be dryed up blood.")
-    messagebox.showinfo("Brass Sculpture writing" "The wrinting says 'YAWN BENEETH'\n"
+                                          "On the central part of the brass sculpture you see something writen in what appears to be dried up blood.")
+    messagebox.showinfo("Brass Sculpture writing" "The writing says 'YAWN BENEATH'\n"
                         "This writing seems to fit together with the other piece/s of writing that you found.\n"
                         "Try figuring out how they fit together")
     messagebox.showinfo("Outcome" "You try to back away from the sculpture but trip and accidentally fall over and grab onto a part of the brass sculpture.\n"
@@ -1007,7 +1009,7 @@ def explore_garden():
 
         Living_tree = Enemy("Living Tree", 25, 8, 6)
 
-        messagebox.showinfo("Outcome", "The living trees suddendly star mooving and moving the wooden humanoid on their bark")
+        messagebox.showinfo("Outcome", "The living trees suddenly star moving and moving the wooden humanoid on their bark")
         battle(player, Living_tree)
         battle(player, Living_tree)
         battle(player, Living_tree)
@@ -1029,30 +1031,37 @@ def explore_garden():
 
             if choice == "yes":
                 messagebox.showinfo("Outcome", "As you try to navigate the overgrown garden,\n"
-                                               "you start noticing all sorts of plant roots coming out of the ground like dead nerve endings.\n"
+                                               "you start noticing all sorts of plant roots coming out of the ground "
+                                               "like dead nerve endings.\n"
                                                " \n"
-                                               "All of a sudden multiple squid-like root clusters start bursting out of the ground\n"
-                                               "and shriek from their elephant trunks with prianha teeth fin place of snouts")
+                                               "All of a sudden multiple squid-like root clusters start bursting out "
+                                               "of the ground\n"
+                                               "and shriek from their elephant trunks with piranha teeth fin place of "
+                                               "snouts")
                 Root_squid = Enemy ("Root Squid", 5, 5, 5)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
-                messagebox.showinfo("Outcome", "After fighting what feels like hundreds of root squids the ground beneeth you starts shaging\n"
+                messagebox.showinfo("Outcome", "After fighting what feels like hundreds of root squids the ground "
+                                               "beneath you starts shagging\n"
                                                "and a giant root squid rises from the ground")
                 Giant_root_squid = Enemy("Giant Root Squid", 100, 5, 0)
                 battle(player, Giant_root_squid)
                 messagebox.showinfo("Outcome", "You defeat the giant root squid, breathing a sigh of relief.\n"
-                                               "Somewhere, stuck between the giant root squid's roots, you find a piece of combat armour!\n"
+                                               "Somewhere, stuck between the giant root squid's roots, you find a "
+                                               "piece of combat armour!\n"
                                                "You equip the combat armor, gaining plus 15 defense!")
                 Player.modify_defense(player, player.defense + 15);
 
-                messagebox.showinfo("Outcome", "You don't seem to find anything else of interest in the garden, so you return to the main hall")
+                messagebox.showinfo("Outcome", "You don't seem to find anything else of interest in the garden, "
+                                               "so you return to the main hall")
             elif choice == "no":
                 messagebox.showinfo("Outcome", "You return to the main hall")
         elif choice == "no":
-            choice = messagebox.askquestion("Decision", "Are you sure? There's probably something very important in the garden!")
+            choice = messagebox.askquestion("Decision", "Are you sure? There's probably something very important in "
+                                                        "the garden!")
             if choice == "yes":
                 messagebox.showinfo("Outcome", "You get attacked by more living trees!")
                 battle(player, Living_tree)
@@ -1069,10 +1078,13 @@ def explore_garden():
 
                 if choice == "yes":
                     messagebox.showinfo("Outcome", "As you try to navigate the overgrown garden,\n"
-                                                   "you start noticing all sorts of plant roots coming out of the ground like dead nerve endings.\n"
+                                                   "you start noticing all sorts of plant roots coming out of the "
+                                                   "ground like dead nerve endings.\n"
                                                    " \n"
-                                                   "All of a sudden multiple squid-like root clusters start bursting out of the ground\n"
-                                                   "and shriek from their elephant trunks with prianha teeth fin place of snouts")
+                                                   "All of a sudden multiple squid-like root clusters start bursting "
+                                                   "out of the ground\n"
+                                                   "and shriek from their elephant trunks with piranha teeth fin "
+                                                   "place of snouts")
                     Root_squid = Enemy("Root Squid", 5, 5, 5)
                     battle(player, Root_squid)
                     battle(player, Root_squid)
@@ -1080,16 +1092,19 @@ def explore_garden():
                     battle(player, Root_squid)
                     battle(player, Root_squid)
                     messagebox.showinfo("Outcome",
-                                        "After fighting what feels like hundreds of root squids the ground beneeth you starts shaging\n"
+                                        "After fighting what feels like hundreds of root squids the ground beneath "
+                                        "you starts shagging\n"
                                         "and a giant root squid rises from the ground")
                     Giant_root_squid = Enemy("Giant Root Squid", 100, 5, 0)
                     battle(player, Giant_root_squid)
                     messagebox.showinfo("Outcome", "You defeat the giant root squid, breathing a sigh of relief.\n"
-                                                   "Somewhere, stuck between the giant root squid's roots, you find a piece of combat armour!\n"
+                                                   "Somewhere, stuck between the giant root squid's roots, you find a "
+                                                   "piece of combat armour!\n"
                                                    "You equip the combat armor, gaining plus 15 defense!")
                     Player.modify_defense(player, player.defense + 15);
                     messagebox.showinfo("Outcome",
-                                        "You don't seem to find anything else of interest in the garden, so you return to the main hall")
+                                        "You don't seem to find anything else of interest in the garden, so you "
+                                        "return to the main hall")
                 elif choice == "no":
                     messagebox.showinfo("Outcome", "You return to the main hall")
             elif choice == "no":
