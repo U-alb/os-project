@@ -1,7 +1,7 @@
 import random
 import time
 import tkinter as tk
-from tkinter import messagebox, simpledialog
+from tkinter import messagebox, simpledialog, dialog
 from tkinter.tix import Tk
 from threading import Thread
 import pygame
@@ -756,20 +756,19 @@ def attic():
                                  "As you enter the attic, the old floorboards creak lodly under your footsteps"
                                  "In the dim light, you spot an old chest, a _placeholder_ with 6 drawers and some old pictures on it, and and object coverd with what seems to be a heavy shroud")
 
-    choice = custom_choice_attic_decision
+    choice = custom_choice_attic_decision(root)
     if choice == "chest":
         handle_chest()
-    elif choice == "_placeholder_":
-        handle__placeholder_()
+    elif choice == "commode":
+        handle_commode()
     elif choice == "obj":
         handle_obj()
 
-    messagebox.showinfo("Outcome", "Something to progress to the endgame - TBD")
 def custom_choice_attic_decision(parent):
     dialog = tk.Toplevel(parent)
     dialog.title("Decision")
 
-    tk.Label(dialog, text="What do you check out first?").pack(padx=20, pady=10)
+    tk.Label(dialog, text="What do you check out ?").pack(padx=20, pady=10)
 
     button_frame = tk.Frame(dialog)
     button_frame.pack(pady=10)
@@ -779,7 +778,7 @@ def custom_choice_attic_decision(parent):
 
     tk.Button(button_frame, text="The chest", command=lambda: set_choice(dialog, choice, "chest")).pack(side="left",
                                                                                                          padx=5)
-    tk.Button(button_frame, text="The _placeholder_", command=lambda: set_choice(dialog, choice, "_placeholder_")).pack(
+    tk.Button(button_frame, text="The commode", command=lambda: set_choice(dialog, choice, "commode")).pack(
         side="left", padx=5)
     tk.Button(button_frame, text="The object covered with the heavy shroud", command=lambda: set_choice(dialog, choice, "object")).pack(
         side="left", padx=5)
@@ -794,16 +793,183 @@ def handle_chest():
                                    "An engraving depicting a creature unlike anything you ever saw\n"
                                             "You decide to take a closer look at the engraving,\n"
                                             "as if bound by forces outside your control")
-    messagebox.showinfo("Engraving","TBD")
+
+    ascii_art = """
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⣾⣿⣷⣾⣿⣷⣶⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣀⠀⠀⠀⢀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⣀⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠟⠻⣿⣿⣆⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⣼⣿⣿⠟⠻⢷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⣿⣿⡿⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⣿⣿⣿⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⢀⣴⣿⣿⠃⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠘⣿⣿⣆⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⢠⣶⣿⣿⣿⣿⣿⣷⣄⢿⣿⠟⠁⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠈⢻⣿⣷⣴⣾⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀
+    ⠀⠀⢰⡿⠋⠁⠀⢀⣨⣝⣿⣿⣷⡁⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⢩⣾⣿⣿⣫⣄⠀⠀⠈⠙⣿⡆⠀⠀
+    ⠀⠀⢾⠃⠀⢀⣴⣿⣿⡿⠚⣿⣿⣷⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⣿⣿⣿⠱⢿⣿⣿⣦⡀⠀⠸⡇⠀⠀
+    ⠀⠀⠀⢀⣴⣿⣿⡿⠋⠀⠀⣿⣿⣿⠀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⣿⣿⣿⠀⠀⠙⢿⣿⣿⣦⡀⠀⠀⠀
+    ⠀⠀⣰⣿⣿⡿⠋⠀⠀⠀⠀⣿⣿⡿⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠙⢿⣿⣿⣄⠀⠀
+    ⠀⣼⣿⣿⠏⠀⠀⠀⠀⠀⣰⣿⣿⠇⣠⣾⡇⠀⠀⣮⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢟⣴⠀⠀⢸⣷⡄⢹⣿⣿⡄⠀⠀⠀⠀⠀⠻⣿⣿⣦⠀
+    ⣸⣿⣿⠏⠀⠀⠀⠀⠀⢠⣿⣿⡟⢰⣿⣿⣿⣄⣀⣹⣿⣞⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣵⣿⣇⣀⣤⣿⣿⣿⡄⢻⣿⣿⡄⠀⠀⠀⠀⠀⢹⣿⣿⡆
+    ⣿⣿⣿⠀⠀⠀⠀⠀⣰⣿⣿⠟⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢏⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⢻⣿⣿⣆⠀⠀⠀⠀⠀⣿⣿⣿
+    ⣿⣿⣿⡀⠀⠀⢀⣼⣿⣿⠏⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠁⠘⢿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠉⠀⣹⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠻⣿⣿⣧⡀⠀⠀⢠⣿⣿⣿
+    ⢹⣿⣿⣧⠀⣠⣾⣿⡿⠃⠀⠀⠀⠹⣿⣿⠟⠛⠛⣿⣿⣿⣦⣀⠀⠀⠻⣿⣿⣿⣿⣿⣿⠏⠀⠀⣀⣼⣿⣿⣿⠛⠛⠻⣿⣿⠃⠀⠀⠀⠙⢿⣿⣷⡄⢀⣾⣿⣿⠇
+    ⠀⠻⣿⣿⣷⣽⣻⠟⠁⠀⠀⠀⠀⠀⠈⠁⠀⢀⣠⣿⣿⣿⣿⣿⣿⣶⣤⡙⣿⡿⢿⣿⢃⣤⣶⣿⣿⣿⣿⣿⣷⣄⡀⠀⠈⠁⠀⠀⠀⠀⠀⠈⠿⣟⣿⣿⣿⣿⠟⠀
+    ⠀⠀⠈⣻⢿⣿⣿⣿⣷⣶⣶⣶⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡎⠁⠈⣱⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣶⣶⣶⣶⣾⣿⣿⣿⡿⣛⠁⠀⠀
+    ⠀⠀⢸⣿⣷⡏⠙⠛⠿⠿⢿⣿⣿⣿⣿⣿⠿⠿⠿⠿⢿⣿⠿⣿⣿⣿⣿⣿⣿⠀⢀⣿⣿⣿⣿⣿⣿⠿⣿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⡿⠿⠿⠛⠋⢵⣿⣿⡆⠀⠀
+    ⠀⠀⣿⣿⣿⠃⠀⠀⢀⣀⣀⣀⡀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣷⡝⣿⣿⣿⣿⡇⢸⣿⣿⣿⣿⢫⣾⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠸⣿⣿⣷⠀⠀
+    ⠀⠀⣿⣿⣿⠀⠀⢰⣿⡿⠿⣿⣿⣷⢄⣴⣿⣿⣿⣿⠟⠉⣵⣶⣶⡸⣿⣿⣿⡇⢸⣿⣿⣿⢃⣶⣶⡎⠙⠻⣿⣿⣿⣷⣤⡠⣾⣿⡿⠿⢿⣿⡄⠀⠀⣿⣿⣿⠀⠀
+    ⠀⠀⢿⣿⣿⡀⠀⠸⡿⠀⠀⠀⢙⣵⣿⣿⣿⠟⠋⠀⠀⠀⣾⣿⣿⡇⣿⣿⣿⡇⢸⣿⣿⣿⢸⣿⣿⣧⠀⠀⠀⠙⠿⣿⣿⣿⣮⡋⠀⠀⠀⣿⠇⠀⢠⣿⣿⡟⠀⠀
+    ⠀⠀⠸⣿⣿⣧⡀⠀⠀⠀⢀⣴⣿⣿⡿⣿⡅⠀⠀⠀⢀⣼⣿⣿⣿⠇⣿⣿⣿⠇⢸⣿⣿⣿⢸⣿⣿⣿⣆⠀⠀⠀⠀⣨⣻⣿⣿⣿⣦⠀⠀⠀⠀⢀⣾⣿⣿⠃⠀⠀
+    ⠀⠀⠀⠹⣿⣿⣷⣤⡀⢠⣿⣿⣿⠟⢿⣿⣿⠀⣀⣴⣿⣿⣿⠟⠁⠀⣿⣿⣿⠀⠈⣿⣿⣿⠀⠈⠻⣿⣿⣷⣦⣀⠀⣿⣿⡎⠻⣿⣿⣷⡄⢀⣴⣿⣿⣿⠃⠀⠀⠀
+    ⠀⠀⠀⠀⠈⠻⣿⣿⣿⣷⣾⣿⣥⣤⢸⣿⣿⣸⣿⣿⡿⠋⠁⠀⠀⢀⣿⣿⡟⠀⠀⣿⣿⣿⠀⠀⠀⠈⠻⢿⣿⣿⣷⣿⣿⣧⣤⣭⣿⣷⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠉⢛⣻⣿⣿⣿⣿⢼⣿⣿⡟⠛⠉⠀⢀⣀⣤⣄⣸⣿⣿⠇⠀⠀⢸⣿⣿⡇⣤⣤⣀⡀⠀⠉⠛⢻⣿⣿⣿⣿⣿⣿⣿⣟⡛⠉⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣷⡀⠀⠸⣿⣿⡇⣀⣴⣾⣿⣿⣿⣏⣿⣿⡿⠀⠀⠀⠀⣿⣿⣿⢻⣿⣿⣿⣷⣦⡀⢸⣿⣿⠁⠀⢀⣾⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣦⣤⣿⣿⣾⣿⣿⠿⠋⠁⢀⣾⣿⣿⢳⣷⠀⢀⣾⡼⣿⣿⣧⡀⠈⠙⠿⣿⣿⣷⣯⣯⣤⣴⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⣿⣿⣿⣿⣿⣟⣯⣅⣀⣠⣴⣿⣿⣿⠃⢻⣿⠆⢸⣿⡏⠹⣿⣿⣿⣦⣄⣀⣨⣽⣻⣿⣿⣿⣿⣿⠟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⠟⠁⠀⣼⡿⠀⠈⣿⣇⠀⠈⠻⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠉⠉⠀⠀⣠⣾⠿⠁⠀⠀⠘⠿⣷⡄⠀⠀⠉⠉⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    """
+    messagebox.showinfo("Engraving", ascii_art)
+
+    choice = messagebox.askquestion("Book", "Do you want to open the book?")
+    if choice == "no":
+        bool = 1;
+        while (bool):
+            choice = messagebox.askquestion("Choice", "You feel compelled by forces beyond your comprehension.\n"
+                                                      "You must open the book")
+            if choice == "no":
+                messagebox.showinfo("You feel compelled by forces beyond your comprehension.\n"
+                                                      "You MUST open the book")
+            elif choice == "yes":
+                messagebox.showinfo("Outcome","You open the book, flipping through its pages,\n"
+                                              "unable to understand the Cryptic Writings inside it. You see symbols resembling strange creatures,\n"
+                                              "different shapes that look like everything and nothing at the same time")
+                messagebox.showinfo("Outcome", "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
+                                               "but not before an old piece of paper falls from its pages.")
+                messagebox.showinfo("Outcome", "The text on the paper is barely readable,\n"
+                                               "but the two words you can make out from the middle of teh sentance read:\n"
+                                               "'...the darkness...'")
+                messagebox.showinfo("Important Info", "The information you found on the piece of paper seems to be of great importance!\n"
+                                                      "You would do well to remember it!")
+                messagebox.showinfo("Outcome", "You turn your attention towards other ares of the attic")
+                custom_choice_attic_decision()
+                bool = 0
+    elif choice == "yes":
+        messagebox.showinfo("Outcome", "You open the book, flipping through its pages,\n"
+                                       "unable to understand the Cryptic Writings inside it. You see symbols resembling strange creatures,\n"
+                                       "different shapes that look like everything and nothing at the same time")
+        messagebox.showinfo("Outcome",
+                            "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
+                            "but not before an old piece of paper falls from its pages.")
+        messagebox.showinfo("Outcome", "The text on the paper is barely readable,\n"
+                                       "but the two words you can make out from the middle of teh sentance read:\n"
+                                       "'...the darkness...'")
+        messagebox.showinfo("Important Info",
+                            "The information you found on the piece of paper seems to be of great importance!\n"
+                            "You would do well to remember it!")
+        messagebox.showinfo("Outcome", "You turn your attention towards other ares of the attic")
+
+        choice = custom_choice_attic_decision(root)
+        if choice == "chest":
+            handle_chest()
+        elif choice == "commode":
+            handle_commode()
+        elif choice == "obj":
+            handle_obj()
+
+def handle_commode():
+    messagebox.showinfo("Outcome", "You go over to the commode and, on the right side, you see a lot of family pictures,\n"
+                                   "pictures of the Ravenwood familly - the owners of the estate in whoch you find yourself.\n"
+                                   " \n"
+                                   "On the left side of the commode, you see an old and crappy notebook, yellowed out by the passing of time")
+
+    choice = custom_choice_commode_decision
+    if choice == "pictures":
+        handle_pictures()
+    elif choice == "notebook":
+        handle_notebook()
+
+
+def custom_choice_commode_decision(parent):
+    dialog = tk.Toplevel(parent)
+    dialog.title("Decision")
+
+    tk.Label(dialog, text="What do you inspect first?").pack(padx=20, pady=10)
+
+    button_frame = tk.Frame(dialog)
+    button_frame.pack(pady=10)
+
+    choice = tk.StringVar()
+    choice.set(None)
+
+    tk.Button(button_frame, text="The Ravenwood family pictures", command=lambda: set_choice(dialog, choice, "pictures")).pack(side="left",
+                                                                                                        padx=5)
+    tk.Button(button_frame, text="The pictures", command=lambda: set_choice(dialog, choice, "notebook")).pack(
+        side="left", padx=5)
+
+    dialog.wait_window(dialog)
+    return choice.get()
+
+def handle_pictures():
+    messagebox.showinfo("Pictures", "As you look over the pictures,\n"
+                                    "you manage to deduce that the Ravenwood family was a happy family of four:"
+                                    "mother, father, daughter and son. But not much else")
+
+    choice = messagebox.askquestion("Commode", "Do you want to look on the other side of the commode?")
+
+    if choice == "yes":
+        handle_notebook()
+    elif choice == "no":
+        choice = custom_choice_attic_decision(root)
+        if choice == "chest":
+            handle_chest()
+        elif choice == "commode":
+            handle_commode()
+        elif choice == "obj":
+            handle_obj()
+
+def handle_notebook():
+    messagebox.showinfo("Notebook", "You grab the dusty old notebook and start reading from it, making out quite a few important details")
+    messagebox.showinfo("Notebook","You learn that the notebook is actually a diary, and it belonged to the caregiver of the two children of the Redwood family\n"
+                                   "A boy named Jimmy and a girl named Elizabeth")
+    messagebox.showinfo("Notebook", "You find out that the family was quite happy until something happened and their relationship started to deteriorate.")
+    messagebox.showinfo("Notebook", "The entries stop suddenly for a couple of moths,\n"
+                                    "the final entry saying that the caregiver never wnated to set foot in 'that cursed hose' ever again")
+    messagebox.showinfo("Outocme", "Deeply troubled by your recent findings, you decide to put the diary down and focus your attention somewhere else")
+
+    choice = messagebox.askquestion("Commode", "Do you want to look on the other side of the commode?")
+
+    if choice == "yes":
+        handle_pictures()
+    elif choice == "no":
+        choice = custom_choice_attic_decision(root)
+        if choice == "chest":
+            handle_chest()
+        elif choice == "commode":
+            handle_commode()
+        elif choice == "obj":
+            handle_obj()
 
 
 
-
-    choice = messagebox.askquestion("Choice", "Do you wnt to open the book?")
-def handle__placeholder_():
-    messagebox.showinfo("Outcome", "TBD")
 def handle_obj():
-    messagebox.showinfo("Outcome", "TBD")
+    messagebox.showinfo("Object", "You pull the heavy shroud off of the object to uncover a disturbing looking brass sculpture.\n"
+                                   "The sculpture looks like an amorphous mass, a formless entity that has taken shape, an amalgamation of human and 'alien' boddy parts.\n"
+                                   "Staring at it feels you with a terrifying unease and a feeling, but you get closer to the sculpture nonetheless")
+    messagebox.showinfo("Brass Sculpture","As you get closer to the brass shape you feel pulled towards it by mysterious forces beyond your comprehension.\n"
+                                          "On the central part of the brass sculpture you see something writeen in what appears to be dryed up blood.")
+    messagebox.showinfo("Brass Sculpture writing" "The wrinting says 'YAWN BENEETH'\n"
+                        "This writing seems to fit together with the other piece/s of writing that you found.\n"
+                        "Try figuring out how they fit together")
+    messagebox.showinfo("Outcome" "You try to back away from the sculpture but trip and accidentally fall over and grab onto a part of the brass sculpture.\n"
+                        "The part of the sculpture on which you pull reveals a secret passage")
+
+    choice = messagebox.askquestion("Decision", "Do you want to enter the secret passage?")
+    if choice == "yes":
+        secret_passage()
+    elif choice == "no":
+        messagebox.showinfo("You return to the main hall")
+
+
+
+
 
 # Define the explore garden function
 def explore_garden():
@@ -855,7 +1021,7 @@ def explore_garden():
             battle(player, Living_tree)
             messagebox.showinfo("Outcome", "Inside the bark of one of the living trees you discover a note, "
                                            "the writing on it says:\n"
-                                           "I found it! I found the password!!!! It's 'I see...'\n"
+                                           "I found it! I found the password!!!! It's 'I have seen...'\n"
                                            "The writing after 'see' isn't readable. ")
             messagebox.showinfo("Outcome", "You are intrigued by what you found. You should remember the writing on "
                                            "the ")
@@ -929,7 +1095,7 @@ def explore_garden():
             elif choice == "no":
                 messagebox.showinfo("Outcome", "You return to the main hall")
     elif choice == "no":
-        messagebox.showinfo("Outcome", "You retiun to the main hall")
+        messagebox.showinfo("Outcome", "You return to the main hall")
 
 
 # Define process_input function

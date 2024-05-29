@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c55e713-684f-4d1e-afef-0a7bb4c79c66" name="Changes" comment="added dog barking">
+    <list default="true" id="4c55e713-684f-4d1e-afef-0a7bb4c79c66" name="Changes" comment="Added functionality and combat encounters to garden. Started work on attic.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/story.py" beforeDir="false" afterPath="$PROJECT_DIR$/story.py" afterDir="false" />
     </list>
@@ -42,20 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.story.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "pre-threads",
-    "last_opened_file_path": "/Users/vladvulturescu/Downloads/os-project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.story.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;pre-threads&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vladvulturescu/Downloads/os-project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\OneDrive - Universitatea Politehnica Bucuresti\UPB\2nd Year\OS\os-project\assets\sounds" />
@@ -80,6 +80,8 @@
       <workItem from="1715799906424" duration="12000" />
       <workItem from="1716901807073" duration="18548000" />
       <workItem from="1716937013359" duration="6750000" />
+      <workItem from="1716976171240" duration="1015000" />
+      <workItem from="1716993960436" duration="10185000" />
     </task>
     <task id="LOCAL-00001" summary="backup">
       <option name="closed" value="true" />
@@ -121,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716918659637</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added functionality and combat encounters to garden. Started work on attic.">
+      <option name="closed" value="true" />
+      <created>1716948335196</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716948335202</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,7 +153,8 @@
     <MESSAGE value="backup before threads" />
     <MESSAGE value="threads" />
     <MESSAGE value="added dog barking" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dog barking" />
+    <MESSAGE value="Added functionality and combat encounters to garden. Started work on attic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality and combat encounters to garden. Started work on attic." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/os_project$story.coverage" NAME="story Coverage Results" MODIFIED="1716923600760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
