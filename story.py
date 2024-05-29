@@ -787,7 +787,19 @@ def custom_choice_attic_decision(parent):
     dialog.wait_window(dialog)
     return choice.get()
 def handle_chest():
-    messagebox.showinfo("Outcome", "TBD")
+    messagebox.showinfo("Outcome", "You try to open the chest and fortunately it isn't locked.")
+    messagebox.showinfo("Inside the Chest", "Inside the chest you find some old memorabilia,\n"
+                                            "trinkets and strangely enough and old leather-bound book ")
+    messagebox.showinfo("Inside the chest", "The leather cover of the book has an ominous engraving on it.\n"
+                                   "An engraving depicting a creature unlike anything you ever saw\n"
+                                            "You decide to take a closer look at the engraving,\n"
+                                            "as if bound by forces outside your control")
+    messagebox.showinfo("Engraving","TBD")
+
+
+
+
+    choice = messagebox.askquestion("Choice", "Do you wnt to open the book?")
 def handle__placeholder_():
     messagebox.showinfo("Outcome", "TBD")
 def handle_obj():
