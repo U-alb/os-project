@@ -69,6 +69,7 @@ def battle(player, enemy):
 
     else:
         messagebox.showinfo("Outcome", "\nYou have been slain by the " + enemy.name + "!" + "YOU DIED")
+        hide_main_menu()
 
 
 def nickname():
@@ -1018,7 +1019,6 @@ def handle_ending():
     Great_Old_Ones = Enemy ("The great Old Ones", 9999999, 9999999, 9999999)
     battle(player, Great_Old_Ones);
     pygame.mixer.Sound("assets/sounds/credits.mp3").play()
-    hide_main_menu()
     messagebox.showinfo("The End", "GAME OVER!")
 
 # Define the attic function
@@ -1473,7 +1473,6 @@ def show_main_menu():
 
     quit_button = tk.Button(root, text="Quit", command=root.quit)
     quit_button.pack()
-    main_menu_widgets.append(quit_button)
 
 # Function to hide the main menu
 def hide_main_menu():
