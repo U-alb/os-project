@@ -50,23 +50,25 @@ Haunted Mansion is an interactive text-based adventure game that uses a GUI inte
 
 ## Example Code
 
-Here is a snippet of how the game initializes and introduces the player:
+Here is a snippet of how the game defines the player
 
 ```python
-import random
-import time
-import tkinter as tk
-from tkinter import messagebox, simpledialog
-import pygame
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.health = 100
+        self.attack = 10
+        self.defense = 5
 
-# Initialize Pygame mixer
-pygame.mixer.init()
+    def is_alive(self):
+        return self.health > 0
 
-def introduction():
-    messagebox.showinfo("Welcome", f"Welcome to the Haunted Mansion, {name}!\n"
-                                   f"You are a distant family member of the Van der Meer family, who built Ravenwood Manor.\n"
-                                   f"Generations of Van der Meers resided within its walls, their opulent lifestyle overshadowed by rumors of corruption and scandal.\n"
-                                   "Are you prepared to uncover the dark secrets that lie within Ravenwood Manor?\n"
-                                   "As the newfound owner, you decide to pay a visit to the mansion.\n"
-                                   "The house is dated, creaky, and falling apart. You walk in the front door.\n"
-                                   "Do you want to enter the living room, kitchen room, explore the basement, attic, or explore the garden?")
+    def print_status(self):
+        messagebox.showinfo("Outcome",
+                            "\n" + "-" * 20 + "\n" + f"{self.name}: Health = {self.health}, Attacking = {self.attack}, Defense = {self.defense}")
+
+    def modify_attack(self, value):
+        self.attack = value
+
+    def modify_defense(self, value):
+        self.defense = value
