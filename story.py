@@ -1017,8 +1017,8 @@ def handle_ending():
     messagebox.showinfo("Outcome", "Your mortal mind cannot comprehend the existence of beings such as the Old Ones. Your psyche shatters and you lose all perception of reality around you, feeling the cold embrace of death as your mind is no more")
     Great_Old_Ones = Enemy ("The great Old Ones", 9999999, 9999999, 9999999)
     battle(player, Great_Old_Ones);
-
     pygame.mixer.Sound("assets/sounds/credits.mp3").play()
+    hide_main_menu()
     messagebox.showinfo("The End", "GAME OVER!")
 
 # Define the attic function
@@ -1447,27 +1447,39 @@ root.title("Haunted Mansion")
 def show_main_menu():
     nickname()
     introduction()
-    # Create buttons for each room
+    global main_menu_widgets
+    # Create buttons for each room and store them in a list
+    main_menu_widgets = []
+
     living_room_button = tk.Button(root, text="Living Room", command=living_room)
     living_room_button.pack()
+    main_menu_widgets.append(living_room_button)
 
     kitchen_button = tk.Button(root, text="Kitchen", command=kitchen)
     kitchen_button.pack()
+    main_menu_widgets.append(kitchen_button)
 
     basement_button = tk.Button(root, text="Basement", command=explore_basement)
     basement_button.pack()
-
-    secret_passage_button = tk.Button(root, text="Secret Passage", command=secret_passage)
-    secret_passage_button.pack()
+    main_menu_widgets.append(basement_button)
 
     attic_button = tk.Button(root, text="Attic", command=attic)
     attic_button.pack()
+    main_menu_widgets.append(attic_button)
 
     garden_button = tk.Button(root, text="Garden", command=explore_garden)
     garden_button.pack()
+    main_menu_widgets.append(garden_button)
 
     quit_button = tk.Button(root, text="Quit", command=root.quit)
     quit_button.pack()
+    main_menu_widgets.append(quit_button)
+
+# Function to hide the main menu
+def hide_main_menu():
+    global main_menu_widgets
+    for widget in main_menu_widgets:
+        widget.pack_forget()
 
     # Show the main menu
 
