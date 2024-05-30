@@ -200,8 +200,10 @@ def custom_choice_dialog(parent):
     choice.set(None)
 
     tk.Button(button_frame, text="Oven", command=lambda: set_choice(dialog, choice, "Oven")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Cupboard", command=lambda: set_choice(dialog, choice, "Cupboard")).pack(side="left",
+                                                                                                          padx=5)
+    tk.Button(button_frame, text="Fridge", command=lambda: set_choice(dialog, choice, "Fridge")).pack(side="left",
+                                                                                                      padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -367,9 +369,12 @@ def custom_choice_basement_dialog(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Look inside the cardboard boxes", command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Try to see if the old lady is still alive", command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Look inside the cardboard boxes",
+              command=lambda: set_choice(dialog, choice, "boxes")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Try to see if the old lady is still alive",
+              command=lambda: set_choice(dialog, choice, "old")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Go the the horse head", command=lambda: set_choice(dialog, choice, "head")).pack(
+        side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -428,6 +433,7 @@ def handle_boxes():
                                 "You give up without even attempting to assemble the device, knowing that you will never wield the power of N's laser")
     broken_door()
 
+
 def handle_creepyGrandma():
     messagebox.showinfo("Outcome", "You go near the almost fossilised old grandma")
     messagebox.showinfo("Outcome", "The old creepy grandma follows your movements with her sight and nothing more,\n"
@@ -461,11 +467,12 @@ def handle_head():
     elif choice == 'Want':
         handle_want()
 
+
 def custom_choice_horseHead_dialog(parent):
     dialog = tk.Toplevel(parent)
     dialog.title("Decision")
 
-    tk.Label(dialog, text="What do ask the Head?").pack(padx=20, pady=10)
+    tk.Label(dialog, text="What do you ask the Head?").pack(padx=20, pady=10)
 
     button_frame = tk.Frame(dialog)
     button_frame.pack(pady=10)
@@ -524,6 +531,7 @@ def handle_who():
             handle_want()
     elif choice == "no":
         broken_door()
+
 
 def handle_what():
     messagebox.showinfo("Outcome", "You ask the horse head what happened here. It responds...")
@@ -682,29 +690,54 @@ def secret_passage():
               ________________
                /                \ 
               /   Secret       /
-              \  Passage      /
+              \  chamber      /
                \_____________/ 
     """
-                                          "You discover a secret passage behind a bookshelf.\n"
-                                          "As you explore further, you find yourself in a dark corridor.\n"
-                                          "Suddenly, the passage collapses behind you, blocking your way back.\n")
+                                          "You discover a secret chamber inside the attic .\n"
+                                          "You look around in the dark trying to find something, anything.\n"
+                                          "Suddenly, the passage collapses behind you, blocking your way out.\n")
+
+    messagebox.showinfo("Secret Chamber", "As you look inside the dark chamber, you notice a lot of makings on the walls,"
+                                   "similar to the ones you found in the leather-bound book in the attic."
+                                   "Terrifying symbols of otherworldly creatures of immense power."
+                                   "Writings in multiple different tongues, all foreign to you.")
+    messagebox.showinfo("Secret Chamber", "In your exploration of the newly discovered secret chamber, "
+                                          "you spot a skinny figure on the ground facing you.")
+    messagebox.showinfo("Secret Chamber", "In the shadowy recess of the secret passage, you find a humanoid-looking creature.\n"
+                                          "His adult body is frail and pallid, yet strangely child-like in its proportions.\n"
+                                          "Clad in tattered yet once elegant clothes reminiscent of the ancient aristocracy, "
+                                          "his appearance speaks of centuries spent in this hidden corridor.\n"
+                                          "Quick, jittery movements and wide, unblinking eyes betray a mind warped by long solitude and dark influences.\n"
+                                          "A twisted smile and a raspy whisper invite you closer, his demeanor as unsettling as it is pitiful.")
+
+    choice = messagebox.askquestion("Choice", "Do you approach the strange person?\n")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber")
+        secret_passage()
 
 
-    choice = custom_choice_dialog2(root)
-
-    if choice == 'Continue Forward':
-        handle_continue_forward()
-    elif choice == 'Find Another Way':
-        handle_find_another_way()
-    else:
-        messagebox.showinfo("Outcome", "You decided to do nothing.")
-
-
-def custom_choice_dialog2(parent):
+def custom_choice_Jimmydialog(parent):
     dialog = tk.Toplevel(parent)
     dialog.title("Decision")
 
-    tk.Label(dialog, text="Do you want to continue forward or try to find another way back?").pack(padx=20, pady=10)
+    tk.Label(dialog, text="What do you ask Jimmy?").pack(padx=20, pady=10)
 
     button_frame = tk.Frame(dialog)
     button_frame.pack(pady=10)
@@ -712,10 +745,21 @@ def custom_choice_dialog2(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="Continue Forward",
-              command=lambda: set_choice2(dialog, choice, "Continue Forward")).pack(side="left", padx=5)
-    tk.Button(button_frame, text="Find Another Way",
-              command=lambda: set_choice2(dialog, choice, "Find Another Way")).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Who are you?", command=lambda: set_choice(dialog, choice, "Who")).pack(
+        side="left",
+        padx=5)
+    tk.Button(button_frame, text="What happened to you?", command=lambda: set_choice(dialog, choice, "What")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="Why are you trapped in here?", command=lambda: set_choice(dialog, choice, "Why")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="What happened to your mother?", command=lambda: set_choice(dialog, choice, "mother")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="What happened to your father?", command=lambda: set_choice(dialog, choice, "father")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="What happened to your sister?", command=lambda: set_choice(dialog, choice, "sister")).pack(
+        side="left", padx=5)
+    tk.Button(button_frame, text="What should I do?", command=lambda: set_choice(dialog, choice, "What to do")).pack(
+        side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
@@ -726,23 +770,256 @@ def set_choice2(dialog, choice, value):
     dialog.destroy()
 
 
-def handle_continue_forward():
-    messagebox.showinfo("Outcome", (
-        "You press on through the darkness, feeling your way along the walls. "
-        "After what feels like hours, you emerge into a hidden chamber. "
-        "Inside, you find the lost family heirlooms and riches beyond your wildest dreams. "
-        "Congratulations, you have successfully navigated the secret passage and claimed your inheritance."
-    ))
+def handle_who1():
+    messagebox.showinfo("Jimmy", "You ask Jimmy who he is. He says...")
+    rand = random.randint(0, 2)
+    if rand == 0:
+        messagebox.showinfo("Jimmy's response", "Me? I... I am Jimmy, yes, Jimmy, once a Redwood, always a... no, no, not now, not anymore. They've taken it all, all but... but my name, yes, my precious name.")
+    elif rand == 1:
+        messagebox.showinfo("Jimmy's response", "Jimmy, that's... that's who they say, who I was... once, long, long before the dark whispers, before the... the endless nights in these walls, echoing, echoing.")
+    elif rand == 2:
+        messagebox.showinfo("Jimmy's response", "Who, who am I? Jimmy, yes, a shadow of a... of a Redwood, the last, the very last. Trapped, yes, trapped in this passage of time, forgotten by all but the ghosts.")
+
+    choice = messagebox.askquestion("Choice", "Do you want to keep talking to Jimmy?")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber.")
+        secret_passage()
+
+def handle_what1():
+    messagebox.showinfo("Jimmy", "You ask Jimmy what happened to him. He says...")
+    rand = random.randint(0, 2)
+    if rand == 0:
+        messagebox.showinfo("Jimmy's response",
+                            "Ah, the Great... the Great Old Ones, they... they whispered to us, yes, whispered from the shadows... Shadows... deep and cold. Our family, the Redwoods, reached, reached so far... far into the void. Lost, we are... lost, all... Father, sister... gone, swallowed by their... their endless call.")
+    elif rand == 1:
+        messagebox.showinfo("Jimmy's response",
+                            "Called them, we did... called the ancient, ancient ones. Whispers, so many whispers filling, filling the halls, twisting, twisting our minds. We, the Redwoods... chosen, yes, chosen for the dark... dark designs. Irresistible, their call... took... took them all, my family, to the depths, depths of their world.")
+    elif rand == 2:
+        messagebox.showinfo("Jimmy's response",
+                            "They came, oh yes, they came because we... we summoned, beckoned them from beyond the stars... Stars... so bright, yet so dark. Promises they gave, curses they were... were. Warping, taking, consuming... my father, my sister... None escaped, none could... could flee their grasp... their cold, cold embrace.")
+
+    choice = messagebox.askquestion("Choice", "Do you want to keep talking to Jimmy?")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber.")
+        secret_passage()
 
 
-def handle_find_another_way():
-    messagebox.showinfo("Outcome", (
-        "You search for another way back, but the passage is blocked. "
-        "In the darkness, you stumble and fall, hitting your head. "
-        "You lose consciousness and never wake up. "
-        "Game over."
-    ))
+def handle_why1():
+    messagebox.showinfo("Jimmy", "You ask Jimmy why he's trapped in here. He says...")
+    rand = random.randint(0, 2)
+    if rand == 0:
+        messagebox.showinfo("Jimmy's response",
+                            "Here? Bound by the shadows, this dark passage... my sanctuary, my prison. Kept by whispers that never cease. Waiting, always waiting for their call.")
+    elif rand == 1:
+        messagebox.showinfo("Jimmy's response",
+                            "Trapped, yes, trapped... The Great Ones need me, their commands echo. This corridor, these walls are my fate. Can't leave, their presence binds me.")
+    elif rand == 2:
+        messagebox.showinfo("Jimmy's response",
+                            "Why? The Old Ones' grip, cold and tight. Shaped my path to guard their secrets here. A watcher, a guardian still needed for their plans.")
 
+    choice = messagebox.askquestion("Choice", "Do you want to keep talking to Jimmy?")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber.")
+        secret_passage()
+
+
+def handle_mother():
+    messagebox.showinfo("Jimmy", "You ask Jimmy what happened to his mother. He says...")
+    rand = random.randint(0, 2)
+    if rand == 0:
+        messagebox.showinfo("Jimmy's response",
+                            "Mother? She passed, yes... passed in the natural decay of time. Good, it was good, the Great Ones willed it so. Her end, a release... a release from the earthly binds, now she’s part of something... something greater, vast.")
+    elif rand == 1:
+        messagebox.showinfo("Jimmy's response",
+                            "She aged, withered like fall leaves, and then... then she was gone. As it should be, the Old Ones’ will. Her passing, a blessing, freed her from the mortal coil, now dancing... dancing in the cosmic winds.")
+    elif rand == 2:
+        messagebox.showinfo("Jimmy's response",
+                            "My mother, she simply faded, faded away with time. A natural end, the Great Ones deemed it fitting. It was a liberation, her spirit... her spirit now roams far beyond, with them... with them.")
+
+    choice = messagebox.askquestion("Choice", "Do you want to keep talking to Jimmy?")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber.")
+        secret_passage()
+def handle_father():
+    messagebox.showinfo("Jimmy", "You ask Jimmy what happened to his father. He says...")
+    rand = random.randint(0, 2)
+    if rand == 0:
+        messagebox.showinfo("Jimmy's response",
+                            "Father? Oh, the Great Ones took him, swept him away... away at once when we first called to them. Marvelous, truly marvelous! To be chosen first, I often wish... wish it were me, embraced by their eternal grace.")
+    elif rand == 1:
+        messagebox.showinfo("Jimmy's response",
+                            "He was the first, the first to be taken by their magnificent presence. Vanished, just like that, a flash of cosmic glory! How splendid... splendid it was. I envy him, envy his journey beyond the stars, beyond this earthly realm.")
+    elif rand == 2:
+        messagebox.showinfo("Jimmy's response",
+                            "Ah, my father, directly claimed by the Great Old Ones, a glorious moment of favor! Disappeared, he did, into their wondrous abyss. Oh, how I long... long to follow, to be so honored, so blessed as he was.")
+
+    choice = messagebox.askquestion("Choice", "Do you want to keep talking to Jimmy?")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber.")
+        secret_passage()
+def handle_sister():
+    messagebox.showinfo("Jimmy", "You ask Jimmy what happened to his sister. He says...")
+    rand = random.randint(0, 2)
+    if rand == 0:
+        messagebox.showinfo("Jimmy's response",
+                            "My sister... dear sister, closest of all, yet... yet I gave her, gave her up to them, to the silence. A sacrifice, oh yes, necessary, so necessary... hoped for their voices, their mighty whisper. But nothing, nothing! Only silence, vast and devouring... It gnaws, gnaws at me, not her absence but the quiet... endless quiet.")
+    elif rand == 1:
+        messagebox.showinfo("Jimmy's response",
+                            "Her? Oh, my sweet sister, sacrificed... yes, sacrificed! To the depths, to the Great Ones, hoping, always hoping they'd whisper back to me, to us! But no, no... only silence, thick and suffocating. It’s the silence, not her loss, that torments me, haunts me... they didn’t speak, didn’t call back!")
+    elif rand == 2:
+        messagebox.showinfo("Jimmy's response",
+                            "She was everything, yet I... I offered her, yes, to the endless dark, to their cold embrace. For their words, their sacred murmurs... But silence, cruel and stark, met me. Not her screams, no, it's their silence that cuts deepest, bleeds me dry of sense and soul... still waiting, always waiting...")
+
+    choice = messagebox.askquestion("Choice", "Do you want to keep talking to Jimmy?")
+    if choice == "yes":
+        choice = custom_choice_Jimmydialog(root)
+        if choice == 'Who':
+            handle_who1()
+        elif choice == 'What':
+            handle_what1()
+        elif choice == 'Why':
+            handle_why1()
+        elif choice == 'mother':
+            handle_mother()
+        elif choice == 'father':
+            handle_father()
+        elif choice == 'sister':
+            handle_sister()
+        elif choice == "What to do":
+            handle_WhatToDo()
+    elif choice == "no":
+        messagebox.showinfo("Outcome", "With no way out, you continue looking around the secret chamber.")
+        secret_passage()
+def handle_WhatToDo():
+
+    messagebox.showinfo("Jimmy's response", "Jimmy's eyes dart around wildly as he leans in, barely containing his glee.\n"
+                                            "'You want out, yes, out of this dark? There's a way... oh, a precious way! See that wall? It's not just a wall, but a door, a door to them.'")
+    messagebox.showinfo("Jimmy's response", "His voice drops to an excited whisper, hands quivering with anticipation.\n"
+                                            "'Just say the words, the sacred words. They open paths, paths to the Old Ones. It's the only way out, out of here, back to the light.'")
+    messagebox.showinfo("Jimmy's Response", "Jimmy struggles to maintain composure, his eagerness seeping through every word.\n"
+                                            "'The words, I do not REMEMBEEEER THEEEEEM, I DO NOT REMEMBER THEM!\n"
+                                            "You... You... You, you, you! YOU MUST KNOW THEM!!!!!!! YOU MUST! YOU MUUUUUUUUUUUST!!!!\n"
+                                            "You Can you feel it? The chance to meet them, to ask them for a way back to the sun...\n"
+                                            "We just need to call them, call them here, call them NOW!'")
+    messagebox.showinfo("Jimmy's response", "He briefly catches himself, trying to sound more reassuring, less desperate.\n"
+                                            "'It’s our path, our only path from this shadow. Trust me, speak the words, trust me, and they’ll let us go, trust me... let us all goooooo.......'")
+    messagebox.showinfo("Doubt", "You do not trust Jimmy at all, but you see no other way out of the chamber, so you follow his guidance.")
+    messagebox.showinfo("Outcome", "Jimmy lead you to the wall and encourages you to speak the words.")
+    messagebox.showinfo("Outcome", "Out of nowhere, the word 'SPEAK' gets etched into the wall, like an invisible claw was present")
+    messagebox.showinfo("Outcome", "Even though you know this is an incredibly bad idea, you can not stop now, you are unable to, it is like you are not in control anymore.")
+
+    choice = custom_finalChoice(root);
+    if choice == "words":
+        handle_ending()
+
+def custom_finalChoice(parent):
+    dialog = tk.Toplevel(parent)
+    dialog.title("Decision")
+
+    tk.Label(dialog, text="What do you ask Jimmy?").pack(padx=20, pady=10)
+
+    button_frame = tk.Frame(dialog)
+    button_frame.pack(pady=10)
+
+    choice = tk.StringVar()
+    choice.set(None)
+
+    tk.Button(button_frame, text="I have seen the darkness yawn beneath", command=lambda: set_choice(dialog, choice, "words")).pack(
+        side="left",
+        padx=5)
+
+    dialog.wait_window(dialog)
+    return choice.get()
+
+def handle_ending():
+
+    messagebox.showinfo("Outcome", "You say 'I have seen the darkness yawn beneath' and the wall fragments itself breaking open into another dimension, filled by a deep endless void, where the Great Old Ones exist.")
+    messagebox.showinfo("Outcome", "Your mortal mind cannot comprehend the existence of beings such as the Old Ones. Your psyche shatters and you lose all perception of reality around you, feeling the cold embrace of death as your mind is no more")
+    Great_Old_Ones = Enemy ("The great Old Ones", 9999999, 9999999, 9999999)
+    battle(player, Great_Old_Ones);
+
+    pygame.mixer.Sound("assets/sounds/credits.mp3").play()
+    messagebox.showinfo("The End", "GAME OVER!")
 
 # Define the attic function
 def attic():
@@ -753,16 +1030,18 @@ def attic():
               \____________/ 
     """
                                  "You climb up to the attic, dust and cobwebs creeping clouding the air with every step.\n"
-                                 "As you enter the attic, the old floorboards creak lodly under your footsteps"
-                                 "In the dim light, you spot an old chest, a _placeholder_ with 6 drawers and some old pictures on it, and and object coverd with what seems to be a heavy shroud")
+                                 "As you enter the attic, the old floorboards creak loudly under your footsteps"
+                                 "In the dim light, you spot an old chest, a _placeholder_ with 6 drawers and some "
+                                 "old pictures on it, and and object covered with what seems to be a heavy shroud")
 
     choice = custom_choice_attic_decision(root)
     if choice == "chest":
         handle_chest()
     elif choice == "commode":
         handle_commode()
-    elif choice == "obj":
+    elif choice == "object":
         handle_obj()
+
 
 def custom_choice_attic_decision(parent):
     dialog = tk.Toplevel(parent)
@@ -777,20 +1056,23 @@ def custom_choice_attic_decision(parent):
     choice.set(None)
 
     tk.Button(button_frame, text="The chest", command=lambda: set_choice(dialog, choice, "chest")).pack(side="left",
-                                                                                                         padx=5)
+                                                                                                        padx=5)
     tk.Button(button_frame, text="The commode", command=lambda: set_choice(dialog, choice, "commode")).pack(
         side="left", padx=5)
-    tk.Button(button_frame, text="The object covered with the heavy shroud", command=lambda: set_choice(dialog, choice, "object")).pack(
+    tk.Button(button_frame, text="The object covered with the heavy shroud",
+              command=lambda: set_choice(dialog, choice, "object")).pack(
         side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
+
+
 def handle_chest():
     messagebox.showinfo("Outcome", "You try to open the chest and fortunately it isn't locked.")
     messagebox.showinfo("Inside the Chest", "Inside the chest you find some old memorabilia,\n"
                                             "trinkets and strangely enough and old leather-bound book ")
     messagebox.showinfo("Inside the chest", "The leather cover of the book has an ominous engraving on it.\n"
-                                   "An engraving depicting a creature unlike anything you ever saw\n"
+                                            "An engraving depicting a creature unlike anything you ever saw\n"
                                             "You decide to take a closer look at the engraving,\n"
                                             "as if bound by forces outside your control")
 
@@ -836,18 +1118,21 @@ def handle_chest():
                                                       "You must open the book")
             if choice == "no":
                 messagebox.showinfo("You feel compelled by forces beyond your comprehension.\n"
-                                                      "You MUST open the book")
+                                    "You MUST open the book")
             elif choice == "yes":
-                messagebox.showinfo("Outcome","You open the book, flipping through its pages,\n"
-                                              "unable to understand the Cryptic Writings inside it. You see symbols resembling strange creatures,\n"
-                                              "different shapes that look like everything and nothing at the same time")
-                messagebox.showinfo("Outcome", "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
-                                               "but not before an old piece of paper falls from its pages.")
+                messagebox.showinfo("Outcome", "You open the book, flipping through its pages,\n"
+                                               "unable to understand the Cryptic Writings inside it. You see symbols resembling strange creatures,\n"
+                                               "different shapes that look like everything and nothing at the same time")
+                messagebox.showinfo("Outcome",
+                                    "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
+                                    "but not before an old piece of paper falls from its pages.")
                 messagebox.showinfo("Outcome", "The text on the paper is barely readable,\n"
-                                               "but the two words you can make out from the middle of teh sentance read:\n"
+                                               "but the two words you can make out from the middle of the sentence "
+                                               "read:\n"
                                                "'...the darkness...'")
-                messagebox.showinfo("Important Info", "The information you found on the piece of paper seems to be of great importance!\n"
-                                                      "You would do well to remember it!")
+                messagebox.showinfo("Important Info",
+                                    "The information you found on the piece of paper seems to be of great importance!\n"
+                                    "You would do well to remember it!")
                 messagebox.showinfo("Outcome", "You turn your attention towards other ares of the attic")
                 custom_choice_attic_decision()
                 bool = 0
@@ -859,7 +1144,7 @@ def handle_chest():
                             "Overwhelmed by the feelings of fear and unease, you quickly close the book and put it back in the chest\n"
                             "but not before an old piece of paper falls from its pages.")
         messagebox.showinfo("Outcome", "The text on the paper is barely readable,\n"
-                                       "but the two words you can make out from the middle of teh sentance read:\n"
+                                       "but the two words you can make out from the middle of the sentence read:\n"
                                        "'...the darkness...'")
         messagebox.showinfo("Important Info",
                             "The information you found on the piece of paper seems to be of great importance!\n"
@@ -871,16 +1156,19 @@ def handle_chest():
             handle_chest()
         elif choice == "commode":
             handle_commode()
-        elif choice == "obj":
+        elif choice == "object":
             handle_obj()
 
-def handle_commode():
-    messagebox.showinfo("Outcome", "You go over to the commode and, on the right side, you see a lot of family pictures,\n"
-                                   "pictures of the Ravenwood familly - the owners of the estate in whoch you find yourself.\n"
-                                   " \n"
-                                   "On the left side of the commode, you see an old and crappy notebook, yellowed out by the passing of time")
 
-    choice = custom_choice_commode_decision
+def handle_commode():
+    messagebox.showinfo("Outcome",
+                        "You go over to the commode and, on the right side, you see a lot of family pictures,\n"
+                        "pictures of the Ravenwood family - the owners of the estate in which you find yourself.\n"
+                        " \n"
+                        "On the left side of the commode, you see an old and crappy notebook, yellowed out by the "
+                        "passing of time")
+
+    choice = custom_choice_commode_decision(root)
     if choice == "pictures":
         handle_pictures()
     elif choice == "notebook":
@@ -899,13 +1187,15 @@ def custom_choice_commode_decision(parent):
     choice = tk.StringVar()
     choice.set(None)
 
-    tk.Button(button_frame, text="The Ravenwood family pictures", command=lambda: set_choice(dialog, choice, "pictures")).pack(side="left",
-                                                                                                        padx=5)
+    tk.Button(button_frame, text="The Ravenwood family pictures",
+              command=lambda: set_choice(dialog, choice, "pictures")).pack(side="left",
+                                                                           padx=5)
     tk.Button(button_frame, text="The pictures", command=lambda: set_choice(dialog, choice, "notebook")).pack(
         side="left", padx=5)
 
     dialog.wait_window(dialog)
     return choice.get()
+
 
 def handle_pictures():
     messagebox.showinfo("Pictures", "As you look over the pictures,\n"
@@ -922,17 +1212,22 @@ def handle_pictures():
             handle_chest()
         elif choice == "commode":
             handle_commode()
-        elif choice == "obj":
+        elif choice == "object":
             handle_obj()
 
+
 def handle_notebook():
-    messagebox.showinfo("Notebook", "You grab the dusty old notebook and start reading from it, making out quite a few important details")
-    messagebox.showinfo("Notebook","You learn that the notebook is actually a diary, and it belonged to the caregiver of the two children of the Redwood family\n"
-                                   "A boy named Jimmy and a girl named Elizabeth")
-    messagebox.showinfo("Notebook", "You find out that the family was quite happy until something happened and their relationship started to deteriorate.")
+    messagebox.showinfo("Notebook",
+                        "You grab the dusty old notebook and start reading from it, making out quite a few important details")
+    messagebox.showinfo("Notebook",
+                        "You learn that the notebook is actually a diary, and it belonged to the caregiver of the two children of the Redwood family\n"
+                        "A boy named Jimmy and a girl named Elizabeth")
+    messagebox.showinfo("Notebook",
+                        "You find out that the family was quite happy until something happened and their relationship started to deteriorate.")
     messagebox.showinfo("Notebook", "The entries stop suddenly for a couple of moths,\n"
-                                    "the final entry saying that the caregiver never wnated to set foot in 'that cursed hose' ever again")
-    messagebox.showinfo("Outocme", "Deeply troubled by your recent findings, you decide to put the diary down and focus your attention somewhere else")
+                                    "the final entry saying that the caregiver never wanted to set foot in 'that cursed hose' ever again")
+    messagebox.showinfo("Outcome",
+                        "Deeply troubled by your recent findings, you decide to put the diary down and focus your attention somewhere else")
 
     choice = messagebox.askquestion("Commode", "Do you want to look on the other side of the commode?")
 
@@ -948,27 +1243,25 @@ def handle_notebook():
             handle_obj()
 
 
-
 def handle_obj():
-    messagebox.showinfo("Object", "You pull the heavy shroud off of the object to uncover a disturbing looking brass sculpture.\n"
-                                   "The sculpture looks like an amorphous mass, a formless entity that has taken shape, an amalgamation of human and 'alien' boddy parts.\n"
-                                   "Staring at it feels you with a terrifying unease and a feeling, but you get closer to the sculpture nonetheless")
-    messagebox.showinfo("Brass Sculpture","As you get closer to the brass shape you feel pulled towards it by mysterious forces beyond your comprehension.\n"
-                                          "On the central part of the brass sculpture you see something writeen in what appears to be dryed up blood.")
-    messagebox.showinfo("Brass Sculpture writing" "The wrinting says 'YAWN BENEETH'\n"
+    messagebox.showinfo("Object",
+                        "You pull the heavy shroud off of the object to uncover a disturbing looking brass sculpture.\n"
+                        "The sculpture looks like an amorphous mass, a formless entity that has taken shape, an amalgamation of human and 'alien' body parts.\n"
+                        "Staring at it feels you with a terrifying unease and a feeling, but you get closer to the sculpture nonetheless")
+    messagebox.showinfo("Brass Sculpture",
+                        "As you get closer to the brass shape you feel pulled towards it by mysterious forces beyond your comprehension.\n"
+                        "On the central part of the brass sculpture you see something writen in what appears to be dried up blood.")
+    messagebox.showinfo("Brass Sculpture writing", "The writing says 'YAWN BENEATH'\n"
                         "This writing seems to fit together with the other piece/s of writing that you found.\n"
                         "Try figuring out how they fit together")
-    messagebox.showinfo("Outcome" "You try to back away from the sculpture but trip and accidentally fall over and grab onto a part of the brass sculpture.\n"
-                        "The part of the sculpture on which you pull reveals a secret passage")
-
+    messagebox.showinfo(
+        "Outcome", "You try to back away from the sculpture but trip and accidentally fall over and grab onto a part of the brass sculpture.\n"
+        "The part of the sculpture on which you pull reveals a secret passage")
     choice = messagebox.askquestion("Decision", "Do you want to enter the secret passage?")
     if choice == "yes":
         secret_passage()
     elif choice == "no":
-        messagebox.showinfo("You return to the main hall")
-
-
-
+        messagebox.showinfo("Outcome", "You return to the main hall")
 
 
 # Define the explore garden function
@@ -1007,7 +1300,8 @@ def explore_garden():
 
         Living_tree = Enemy("Living Tree", 25, 8, 6)
 
-        messagebox.showinfo("Outcome", "The living trees suddendly star mooving and moving the wooden humanoid on their bark")
+        messagebox.showinfo("Outcome",
+                            "The living trees suddenly star moving and moving the wooden humanoid on their bark")
         battle(player, Living_tree)
         battle(player, Living_tree)
         battle(player, Living_tree)
@@ -1029,30 +1323,37 @@ def explore_garden():
 
             if choice == "yes":
                 messagebox.showinfo("Outcome", "As you try to navigate the overgrown garden,\n"
-                                               "you start noticing all sorts of plant roots coming out of the ground like dead nerve endings.\n"
+                                               "you start noticing all sorts of plant roots coming out of the ground "
+                                               "like dead nerve endings.\n"
                                                " \n"
-                                               "All of a sudden multiple squid-like root clusters start bursting out of the ground\n"
-                                               "and shriek from their elephant trunks with prianha teeth fin place of snouts")
-                Root_squid = Enemy ("Root Squid", 5, 5, 5)
+                                               "All of a sudden multiple squid-like root clusters start bursting out "
+                                               "of the ground\n"
+                                               "and shriek from their elephant trunks with piranha teeth fin place of "
+                                               "snouts")
+                Root_squid = Enemy("Root Squid", 5, 5, 5)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
                 battle(player, Root_squid)
-                messagebox.showinfo("Outcome", "After fighting what feels like hundreds of root squids the ground beneeth you starts shaging\n"
+                messagebox.showinfo("Outcome", "After fighting what feels like hundreds of root squids the ground "
+                                               "beneath you starts shagging\n"
                                                "and a giant root squid rises from the ground")
                 Giant_root_squid = Enemy("Giant Root Squid", 100, 5, 0)
                 battle(player, Giant_root_squid)
                 messagebox.showinfo("Outcome", "You defeat the giant root squid, breathing a sigh of relief.\n"
-                                               "Somewhere, stuck between the giant root squid's roots, you find a piece of combat armour!\n"
+                                               "Somewhere, stuck between the giant root squid's roots, you find a "
+                                               "piece of combat armour!\n"
                                                "You equip the combat armor, gaining plus 15 defense!")
                 Player.modify_defense(player, player.defense + 15);
 
-                messagebox.showinfo("Outcome", "You don't seem to find anything else of interest in the garden, so you return to the main hall")
+                messagebox.showinfo("Outcome", "You don't seem to find anything else of interest in the garden, "
+                                               "so you return to the main hall")
             elif choice == "no":
                 messagebox.showinfo("Outcome", "You return to the main hall")
         elif choice == "no":
-            choice = messagebox.askquestion("Decision", "Are you sure? There's probably something very important in the garden!")
+            choice = messagebox.askquestion("Decision", "Are you sure? There's probably something very important in "
+                                                        "the garden!")
             if choice == "yes":
                 messagebox.showinfo("Outcome", "You get attacked by more living trees!")
                 battle(player, Living_tree)
@@ -1069,10 +1370,13 @@ def explore_garden():
 
                 if choice == "yes":
                     messagebox.showinfo("Outcome", "As you try to navigate the overgrown garden,\n"
-                                                   "you start noticing all sorts of plant roots coming out of the ground like dead nerve endings.\n"
+                                                   "you start noticing all sorts of plant roots coming out of the "
+                                                   "ground like dead nerve endings.\n"
                                                    " \n"
-                                                   "All of a sudden multiple squid-like root clusters start bursting out of the ground\n"
-                                                   "and shriek from their elephant trunks with prianha teeth fin place of snouts")
+                                                   "All of a sudden multiple squid-like root clusters start bursting "
+                                                   "out of the ground\n"
+                                                   "and shriek from their elephant trunks with piranha teeth fin "
+                                                   "place of snouts")
                     Root_squid = Enemy("Root Squid", 5, 5, 5)
                     battle(player, Root_squid)
                     battle(player, Root_squid)
@@ -1080,16 +1384,19 @@ def explore_garden():
                     battle(player, Root_squid)
                     battle(player, Root_squid)
                     messagebox.showinfo("Outcome",
-                                        "After fighting what feels like hundreds of root squids the ground beneeth you starts shaging\n"
+                                        "After fighting what feels like hundreds of root squids the ground beneath "
+                                        "you starts shagging\n"
                                         "and a giant root squid rises from the ground")
                     Giant_root_squid = Enemy("Giant Root Squid", 100, 5, 0)
                     battle(player, Giant_root_squid)
                     messagebox.showinfo("Outcome", "You defeat the giant root squid, breathing a sigh of relief.\n"
-                                                   "Somewhere, stuck between the giant root squid's roots, you find a piece of combat armour!\n"
+                                                   "Somewhere, stuck between the giant root squid's roots, you find a "
+                                                   "piece of combat armour!\n"
                                                    "You equip the combat armor, gaining plus 15 defense!")
                     Player.modify_defense(player, player.defense + 15);
                     messagebox.showinfo("Outcome",
-                                        "You don't seem to find anything else of interest in the garden, so you return to the main hall")
+                                        "You don't seem to find anything else of interest in the garden, so you "
+                                        "return to the main hall")
                 elif choice == "no":
                     messagebox.showinfo("Outcome", "You return to the main hall")
             elif choice == "no":
